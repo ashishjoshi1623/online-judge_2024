@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../public/login.css";
+import "./login.css";
 import axios from "axios";
 
 export default function Login() {

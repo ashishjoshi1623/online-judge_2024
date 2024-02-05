@@ -1,0 +1,51 @@
+.nav-section{
+    background-color:#120237;
+    display: flex;
+    justify-content: center;
+    height: 12vh;
+}
+.appname1
+{
+    margin-left: 1rem;
+    font-family: 'PT Serif', serif;
+    font-weight: 700;
+    font-style: italic;
+    color: #7dbeff;
+}
+.appname2
+{
+    font-family: 'PT Serif', serif;
+    font-weight: 700;
+    font-style: italic;
+    color: #c17eff;
+}
+
+.nav-app-logo{
+    display: flex;
+}
+
+.nav-container{
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-activeLink{
+    text-decoration: none;
+    padding: 5px;
+}
+
+.app-icon{
+    height: 60px;
+    width: 65px;
+}
+
+.textcolor-purple{
+    color: #c17eff;
+    font-weight: 900;
+}
+.textcolor-blue{
+    color: #8bb9ed;
+    font-weight: 500;
+}

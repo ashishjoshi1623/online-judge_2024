@@ -1,12 +1,12 @@
 import React from "react";
-import "../../public/register.css";
+import "./register.css";
 
 export default function Register() {
   return (
     <section className="register-section">
       <form>
         <div className="register-container">
-        <img src="#" alt="app-logo" />
+        <img src="../../public/appIcons/appIcon.jpeg" alt="app-logo" height="70" width="80" />
           <div className="username-div input">
             <label>
               <input type="text" name="username" placeholder="Username" required />
@@ -33,7 +33,7 @@ export default function Register() {
             </label>
           </div>
           <div className="submit-button-div input">
-            <input className="btn btn-primary" type="submit" value="Login" />
+            <input className="Register-btn" type="submit" value="Register" />
           </div>
         </div>
       </form>

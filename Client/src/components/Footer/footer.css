@@ -1,0 +1,21 @@
+.footer-section{
+    background-color:#120237;
+}
+
+p{
+    color: aliceblue;
+}
+
+.footer-activeLink{
+    text-decoration: none;
+    padding: 5px;
+}
+
+.textcolor-purple{
+    color: #c17eff;
+    font-weight: 900;
+}
+.textcolor-blue{
+    color: #8bb9ed;
+    font-weight: 500;
+}
