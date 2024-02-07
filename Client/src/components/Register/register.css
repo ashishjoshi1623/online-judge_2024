@@ -35,5 +35,58 @@ input{
     padding-bottom: 5px;
     padding-left: 2rem;
     padding-right: 2rem;
+}
+
+.loginRouteContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-btnroute{
     color: #8bb9ed;
+    text-decoration: none;
+    border: 1px solid #c17eff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 5px;
+    background-color: #120237;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .register-container{
+        background-color: #19083f;
+        border: 2px solid #120237;
+        border-radius: 10px;
+        height: 60vh;
+        width: 70vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10%;
+    }
+    
+    input{
+        border: 1px solid #c17eff;
+        background-color: #0c041e;
+        border-radius: 2px;
+        padding: 4px;
+        color: #8bb9ed;
+        width: 20rem;
+    }
+    
+    .Register-btn{
+        border: 1px solid #c17eff;
+        border-radius: 5px;
+        background-color: #120237;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        width: 10rem;
+    }
 }

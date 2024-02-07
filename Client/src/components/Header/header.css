@@ -49,3 +49,28 @@
     color: #8bb9ed;
     font-weight: 500;
 }
+
+@media screen and (max-width: 1000px){
+    
+    .nav-container{
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .nav-app-logo{
+        padding-top: 40px;
+    }
+    .nav-app-logo h1 {
+        font-size: xxx-large;
+    }
+    .me-auto{
+        font-size: x-large;
+        padding-bottom: 1rem;
+    }
+    .me-auto a {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}

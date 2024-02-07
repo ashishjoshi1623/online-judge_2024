@@ -1,5 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from 'react-bootstrap/Navbar';
 import { NavLink } from 'react-router-dom';
 import "./header.css"
@@ -17,9 +18,8 @@ function Header() {
         <div className="nav-link">
         <Nav className="me-auto">
             <NavLink to="" className={({isActive})=> `header-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>Home</NavLink>
-            <NavLink to="register" className={({isActive})=> `header-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>Login/Register</NavLink>
-            <NavLink to="about" className={({isActive})=> `header-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>About</NavLink>
-            <NavLink to="contact" className={({isActive})=> `header-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>Contact</NavLink>
+            <NavLink to="register" className={({isActive})=> `header-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>Register</NavLink>
+            <NavLink to="login" className={({isActive})=> `header-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>Login</NavLink>
           </Nav>
           </div>
         </div>

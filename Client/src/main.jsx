@@ -11,7 +11,7 @@ import Layout from './Layout.jsx';
 import Home from './components/Home/Home.jsx';
 import Login from './components/Login/Login.jsx';
 import Register from './components/Register/Register.jsx';
-import About from './components/About.jsx';
+import About from './components/About/About.jsx';
 import Contact from './components/Contact/contact.jsx';
 
 const router = createBrowserRouter(

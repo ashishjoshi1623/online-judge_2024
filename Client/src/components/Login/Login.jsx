@@ -9,38 +9,30 @@ export default function Login() {
 
   
 
-  function submitForm(e){
+  async function submitLoginForm(e){
     e.preventDefault();
 
-    let userData = {
+    let loginUserData = {
       username:username,
       password:password
     }
 
-    // fetch("http://localhost:3000/api/login",{
-    //   method:'post',
-    //   headers:{
-    //     "Content-Type":"application/json"
-    //   },
-    //   body:JSON.stringify(userData)
-    // }).then(response=>response.json()).then(data=>{
-    //   console.log(data)
-    // })
-
-    // console.log(username +" "+ password)
-    // console.log("clicked");
-
-    axios.post("http://localhost:3000/api/login",{
-      username:username,
-      password: password
+    try {
+      await axios.post("http://localhost:3000/api/login",{
+      loginUserData
     });
+    } catch (error) {
+      console.log("ERROR : " + error);
+    }
+
+    
 
     console.log("clicked");
   }
 
   return (
     <div className="login-container">
-      <form onSubmit={submitForm}>
+      <form onSubmit={submitLoginForm}>
         <div className="login">
         <div className="userdiv mb-4">
           <label>
