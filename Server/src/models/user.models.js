@@ -16,11 +16,16 @@ const userSchema = new Schema(
         required : [true, "Password can not be left empty."],
     },
     email : {
-        type : string,
+        type : String,
         required : [true, "This field is required"],
         unique : [true, "This username already exist !"],
         lowercase : true,
         trim : true,
+    },
+    problemSolved : {
+        type : Schema.Types.ObjectId,
+        ref : "Question",
+        default : 0,
     }
 
 
@@ -32,11 +37,11 @@ userSchema.pre("save", async function (next){
     if( !this.isModified("password") ) return next();
 
     // encrypting password to 10 round hashing
-    this.password = bcrypt.hash(this.password, 10);
+    this.password = await bcrypt.hash(this.password, 10);
     next();
 })
 
-// checks user given password with stored password returns boolean
+// checks user given password with stored password, returns boolean
 userSchema.methods.isPasswordCorrect = async function(password){
     return await bcrypt.compare(password, this.password)
 }

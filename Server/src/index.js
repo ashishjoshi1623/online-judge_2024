@@ -3,9 +3,11 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import connectDB from "./db/index.js";
+import { body , validationResult} from "express-validator";
+import { User } from "./models/user.models.js";
 
 const app = express();
-const port = process.env.PORT || 3000; //port fron .env or 3000
+const port = process.env.PORT || 3000; //port from .env or 3000
 
 dotenv.config({
     path : '../env'
@@ -23,14 +25,18 @@ app.get("/",cors(), (req,res)=>{
     res.send("hello");
 });
 
-// Post method fetching register credentials
-app.post("/api/register",cors(), (req,res)=>{
-    console.log(req.body);
-    res.json({"message":"user info received"});
+
+
+// Post method fetching "Register" credentials
+app.post("/api/register",cors(), async (req,res) => {
+
+    // user details from frontend
+    console.log(req.body.userData.username)
+
 });
 
 
-// Post method fetching login credentials
+// Post method fetching "Login" credentials
 app.post("/api/login",cors(), (req,res)=>{
     console.log(req.body);
     res.json({"message":"user info received"});

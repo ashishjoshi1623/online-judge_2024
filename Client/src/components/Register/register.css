@@ -55,6 +55,12 @@ input{
     background-color: #120237;
 }
 
+.form-error{
+    color: red;
+    font-size: x-small;
+    font-style: italic;
+}
+
 
 @media screen and (max-width: 1000px) {
     .register-container{

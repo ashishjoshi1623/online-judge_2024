@@ -1,69 +1,89 @@
-import React, { useState } from "react";
+import React from "react";
 import "./register.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useFormik } from "formik";
+import { validateSchema } from "../../validation/index.jsx";
 
 export default function Register() {
-  const [username,setUserName] = useState('');
-  const [password,setPassword] = useState('');
-  const [confirmPassword,setConfirmPassword] = useState('');
-  const [email,setEmail] = useState('');
 
-  // console.log(`${username} ${password} ${confirmPassword} ${email}`);
+  //object to collect initial values
+  const registerUserData = {
+  username: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
-  async function submitRegisterForm(){
-    if(password === confirmPassword)
-    {
-        const registerUserData = {
-          username : username,
-          password : password,
-          email : email
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues : registerUserData,
+      validationSchema: validateSchema,
+      onSubmit: async (values, action) => {
+        const userData = {
+          username : values.username,
+          password : values.password,
+          email : values.email,
+          confirmPassword : values.confirmPassword
         }
-        
         try {
             await axios.post("http://localhost:3000/api/register",{
-            registerUserData
+            userData
           });
+          
         } catch (error) {
           console.log("ERROR : " + error);
         }
-    } else {
-        alert("Password mismatch");
-      }
-  }
+        action.resetForm();
+      },
+    });
 
 
 
   return (
     <section className="register-section">
-      <form onSubmit={submitRegisterForm}>
+      <form onSubmit={ handleSubmit } >
         <div className="register-container">
         <img src="../../public/appIcons/appIcon.jpeg" alt="app-logo" height="70" width="80" />
           <div className="username-div input">
             <label>
-              <input type="text" onChange={(e)=>setUserName(e.target.value)} name="username" placeholder="Username" required />
+              <input type="text" autoComplete="off" onChange={handleChange} name="username" placeholder="Username" value={values.username} onBlur={handleBlur} />
             </label>
+            {errors.username && touched.username ? (
+                      <p className="form-error">{errors.username}</p>
+                    ) : null}
           </div>
           <div className="pass-div input">
             <label>
-              <input type="password" onChange={(e)=>setPassword(e.target.value)} name="password" placeholder="Password" required />
+              <input type="password" autoComplete="off" onChange={handleChange} name="password" placeholder="Password" value={values.password} onBlur={handleBlur} />
             </label>
+            {errors.password && touched.password ? (
+                      <p className="form-error">{errors.password}</p>
+                    ) : null}
           </div>
           <div className="confirm-pass-div input">
             <label>
               <input
                 type="password"
-                onChange={(e)=>setConfirmPassword(e.target.value)}
+                autoComplete="off"
+                onChange={handleChange}
                 name="confirmPassword"
                 placeholder="Confirm password"
-                required
+                value={values.confirmPassword}
+                onBlur={handleBlur}
               />
             </label>
+            {errors.confirmPassword && touched.confirmPassword ? (
+                      <p className="form-error">{errors.confirmPassword}</p>
+                    ) : null}
           </div>
           <div className="email-div input">
             <label>
-              <input type="email" onChange={(e)=>setEmail(e.target.value)} name="email" placeholder="Email" required />
+              <input type="email" autoComplete="off" onChange={handleChange} name="email" placeholder="Email" value={values.email} onBlur={handleBlur} />
             </label>
+            {errors.email && touched.email ? (
+                      <p className="form-error">{errors.email}</p>
+                    ) : null}
           </div>
           <div className="submit-button-div input">
             <input className="Register-btn" type="submit" value="Register" />

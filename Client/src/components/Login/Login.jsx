@@ -18,9 +18,10 @@ export default function Login() {
     }
 
     try {
-      await axios.post("http://localhost:3000/api/login",{
+      const loginResponse = await axios.post("http://localhost:3000/api/login",{
       loginUserData
     });
+    console.log(loginResponse);
     } catch (error) {
       console.log("ERROR : " + error);
     }
@@ -37,13 +38,13 @@ export default function Login() {
         <div className="userdiv mb-4">
           <label>
             Username:<br />
-            <input className="box-border mt-2" onChange={(e)=>setUserName(e.target.value)} type="text" placeholder=" Enter username" name="username" />
+            <input className="box-border mt-2" onChange={(e)=>setUserName(e.target.value)} type="text" placeholder=" Enter username" name="username" required />
           </label>
           </div>
           <div className="passdiv mb-4">
           <label>
             Password: <br />
-            <input className="box-border mt-2" onChange={(e)=>setPassword(e.target.value)} type="password" placeholder=" Enter your password" name="password" />
+            <input className="box-border mt-2" onChange={(e)=>setPassword(e.target.value)} type="password" placeholder=" Enter your password" name="password" required />
           </label>
           </div>
           <div className="loginButton">
