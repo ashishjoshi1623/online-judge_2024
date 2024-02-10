@@ -21,11 +21,6 @@ const userSchema = new Schema(
         unique : [true, "This username already exist !"],
         lowercase : true,
         trim : true,
-    },
-    problemSolved : {
-        type : Schema.Types.ObjectId,
-        ref : "Question",
-        default : 0,
     }
 
 

@@ -15,16 +15,13 @@ export default function Footer() {
         <footer className="py-3">
           <ul className="nav justify-content-center border-bottom pb-3 mb-3">
             <li className="nav-item">
-            <NavLink to="" className={({isActive})=> `header-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>Home</NavLink>
+            <NavLink to="/" className={({isActive})=> `header-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>Home</NavLink>
             </li>
             <li className="nav-item">
-            <NavLink to="register" className={({isActive})=> `footer-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>Login/Register</NavLink>
+            <NavLink to="/about" className={({isActive})=> `footer-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>About</NavLink>
             </li>
             <li className="nav-item">
-            <NavLink to="about" className={({isActive})=> `footer-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>About</NavLink>
-            </li>
-            <li className="nav-item">
-            <NavLink to="contact" className={({isActive})=> `footer-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>Contact</NavLink>
+            <NavLink to="/contact" className={({isActive})=> `footer-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>Contact</NavLink>
             </li>
           </ul>
           <p className="text-center text-body-white" >© {year} TrashCodes</p>

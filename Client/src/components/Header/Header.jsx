@@ -17,9 +17,9 @@ function Header() {
         </div>
         <div className="nav-link">
         <Nav className="me-auto">
-            <NavLink to="" className={({isActive})=> `header-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>Home</NavLink>
-            <NavLink to="register" className={({isActive})=> `header-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>Register</NavLink>
-            <NavLink to="login" className={({isActive})=> `header-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>Login</NavLink>
+            <NavLink to="/" className={({isActive})=> `header-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>Home</NavLink>
+            <NavLink to="/register" className={({isActive})=> `header-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>Register</NavLink>
+            <NavLink to="/login" className={({isActive})=> `header-activeLink ${isActive ? "textcolor-purple" : "textcolor-blue"} `}>Login</NavLink>
           </Nav>
           </div>
         </div>
