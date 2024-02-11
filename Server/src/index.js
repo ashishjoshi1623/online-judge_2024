@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import connectDB from "./db/index.js";
 import { User } from "./models/user.models.js";
+import {Admin} from "./models/admin.models.js";
 import { ApiError } from "./utils/ApiError.js";
 import {ApiResponse} from "./utils/ApiResponse.js"
 
@@ -30,13 +31,12 @@ app.get("/",cors(), (req,res)=>{
 
 // Post method fetching "Register" credentials
 app.post("/api/register",cors(), async (req,res) => {
-
     // user details from frontend
    const {username, email, password, confirmPassword} = req.body.values;
     //validation completed in frontend
-//    console.log(username);
+    //console.log(username);
 
-// check if user already exist in database
+    //check if user already exist in database
     const existingUser = await User.findOne({
         $or : [{username},{email}]
     })
@@ -47,7 +47,6 @@ app.post("/api/register",cors(), async (req,res) => {
         new ApiResponse(409, {message : "User already exist, please login !"} , "User already exist, please login !")
         )
     }
-
         //create an object and push into database
         const newUser = await User.create({
             username: username.toLowerCase(),
@@ -65,8 +64,6 @@ app.post("/api/register",cors(), async (req,res) => {
         return res.status(201).json(
         new ApiResponse(201, isUserCreated, "User registered Successfully")
         )
-
-
 });
 
 
@@ -75,13 +72,18 @@ app.post("/api/login",cors(), async (req,res)=>{
     const {username , password } = req.body.loginUserData;
     // console.log(username , password);
 
+    if((username === `${process.env.ADMIN_USERNAME}`) && (password === `${process.env.ADMIN_PASSWORD}`)){
+        return res.status(200).json(new ApiResponse(200,
+                {
+                    username : username
+                }, "User Logged In Successfully"))
+    }
     // change password to hash code for matching
     const doesUserExist = await User.findOne( { username } );
     console.log(doesUserExist);
 
     //If user exist
     if(doesUserExist){
-
         // check if password is correct
         const isPassCorrect = await doesUserExist.isPasswordCorrect(password);
         console.log(isPassCorrect);
@@ -100,7 +102,6 @@ app.post("/api/login",cors(), async (req,res)=>{
         )
         }
     }
-
     // If user does not exist send response
     return res.status(409).json(
         new ApiResponse(409, {message : "username or password is incorrect !"} , "username or password is incorrect !")

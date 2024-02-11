@@ -32,6 +32,9 @@ export default function Login() {
       if(loginResponse.data.statusCode === 201){
         navigate("/",{ state : {data : username}})
       }
+      else if(loginResponse.data.statusCode === 200){
+        navigate("/admin",{ state : {data : username}})
+      }
       console.log(loginResponse.data);
       setErrorMessage(loginResponse.data.message)
       // setLoggedUser(loginResponse.data.username)

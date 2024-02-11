@@ -13,6 +13,7 @@ import Register from './components/Register/Register.jsx';
 import About from './components/About/About.jsx';
 import Contact from './components/Contact/Contact.jsx';
 import Admin from './components/Admin/Admin.jsx';
+import AdminLogin from './components/Admin/AdminLogin.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +23,8 @@ const router = createBrowserRouter(
       <Route path='about' element={<About />}/>
       <Route path='contact' element={<Contact />}/>
       <Route path='login' element={<Login />}/>
-      <Route path='admin' element={<Admin />}/>
+      <Route path='/adminlogin' element={<AdminLogin />}/>
+      <Route path='/adminlogin/admin' element={<Admin />}/>
     </Route>
   )
 )
