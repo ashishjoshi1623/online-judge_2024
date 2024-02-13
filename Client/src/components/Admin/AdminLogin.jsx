@@ -1,12 +1,36 @@
 import React, { useState } from 'react';
 import "./admin.css"
 import Nav from 'react-bootstrap/Nav';
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
+import axios from 'axios';
 
 function AdminLogin() {
     const [username,setUserame] = useState('');
     const [password,setPassword] = useState('');
-    console.log(username, password);
+    const [errorMessage,setErrorMessage] = useState('');
+    // console.log(username, password);
+
+    const navigate = useNavigate();
+
+    async function submitAdmin(e){
+      e.preventDefault(); //prevent page from default behaviour of reloding
+      try {
+        const adminResponse = await axios.post(`${import.meta.env.VITE_API_PORT}/api/adminlogin` , {
+          username : username,
+          password : password
+        })
+
+        if(adminResponse.status === 200){
+          navigate("/adminlogin/admin",{state : {data : adminResponse.data}})
+        }
+        console.log(adminResponse.data.message);
+        setErrorMessage(adminResponse.data.message);
+      } catch (error) {
+        console.log("ERROR :" + error);
+        setErrorMessage(error.response.data.message);
+      }
+  }
+
   return (
     <>
     <div className="body">
@@ -28,13 +52,13 @@ function AdminLogin() {
 
         <section className="admin-login">
         <h1 className='admin-nav-heading'>Login</h1>
-            <form>
+            <form onSubmit={submitAdmin}>
                 <div className="admin-formContainer">
                     <label>
                         <input type="text"
                         name='username'
                         placeholder='Enter username'
-                        className='input'
+                        className='admin-input'
                         onChange={(e) => setUserame(e.target.value)} 
                         required
                         />
@@ -43,12 +67,13 @@ function AdminLogin() {
                         <input type="password"
                         name='password'
                         placeholder='Enter password'
-                        className='input'
+                        className='admin-input'
                         onChange={(e) => setPassword(e.target.value)} 
                         required
                         />
                     </label>
-                    <input type="submit" className="admin-login-btn input" value="Login"/>
+                    {errorMessage ? (<p className="loginErrorMessage">{errorMessage}</p>) : null}
+                    <input type="submit" className="admin-login-btn admin-input" value="Login"/>
                 </div>
             </form>
             

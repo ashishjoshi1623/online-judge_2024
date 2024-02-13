@@ -16,10 +16,12 @@ const questionSchema = new Schema({
             required : true
         }
     ],
-    output : {
-        type : String,
-        required : true
-    }
+    output : [
+        {
+            type : String,
+            required : true
+        }
+    ]
 },{timestamps: true})
 
 export const Question = mongoose.model("Question",questionSchema);

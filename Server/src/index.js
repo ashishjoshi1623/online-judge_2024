@@ -7,6 +7,7 @@ import { User } from "./models/user.models.js";
 import {Admin} from "./models/admin.models.js";
 import { ApiError } from "./utils/ApiError.js";
 import {ApiResponse} from "./utils/ApiResponse.js"
+import {Question} from "./models/question.models.js"
 
 const app = express();
 const port = process.env.PORT || 3000; //port from .env or 3000
@@ -72,12 +73,6 @@ app.post("/api/login",cors(), async (req,res)=>{
     const {username , password } = req.body.loginUserData;
     // console.log(username , password);
 
-    if((username === `${process.env.ADMIN_USERNAME}`) && (password === `${process.env.ADMIN_PASSWORD}`)){
-        return res.status(200).json(new ApiResponse(200,
-                {
-                    username : username
-                }, "User Logged In Successfully"))
-    }
     // change password to hash code for matching
     const doesUserExist = await User.findOne( { username } );
     console.log(doesUserExist);
@@ -107,6 +102,81 @@ app.post("/api/login",cors(), async (req,res)=>{
         new ApiResponse(409, {message : "username or password is incorrect !"} , "username or password is incorrect !")
         )
 });
+
+
+// Admin Login 
+app.post("/api/adminlogin" ,cors(), async (req,res) => {
+    // console.log(req.body);
+    const {username, password} = req.body;
+    
+    const isAdmin = await Admin.findOne({username});
+        
+    if(isAdmin){
+        const isPassCorrect = await isAdmin.isPasswordCorrect(password);
+        if(isPassCorrect)
+            {   
+                return res.status(200).json(new ApiResponse(200, 
+                    {
+                        admin : username
+                    },
+                    "Admin Login success")) 
+            }
+            else{
+                return res.status(409).json(new ApiResponse(409, {message :"Incorrect Password"},"Incorrect Password"))
+            }
+           
+        }
+        return res.status(409).json(new ApiResponse(409, {message :"Incorrect username/Password"},"Incorrect username/Password"))
+
+    
+});
+
+// Add question in QuestionSchema
+app.post("/api/question",cors(), async (req,res)=>{
+    // console.log(req.body);
+    const {title, problemStatement, testCases, output} = req.body;
+
+    const isExist = await Question.findOne({title})
+
+    if(isExist){
+        return res.sendStatus(409).json(new ApiResponse(409,{message : "Already exist"},"Already exist"));
+    }
+
+    //if new entry, create a new database object
+
+    const newEntry = Question.create({
+        title,
+        problemStatement,
+        testCases : [testCases],
+        output : [output],
+    })
+
+    const isCreated = await Question.findById((await newEntry)._id);
+
+    if(!isCreated){
+        throw new ApiError(500,"Something went wrong");
+    }
+
+    // console.log(isCreated);
+
+    return res.status(201).json(
+        new ApiResponse(201, isCreated, "User registered Successfully")
+        )
+})
+
+//send questions as response
+app.post("/api/allquestions",cors(),async (req,res) => {
+    try {
+        const question = await Question.find();
+        res.json(JSON.stringify(question));
+    } catch (error) {
+        throw new ApiError(500,"Something went wrong");
+    }
+    
+    // const questionObj = Object.assign({},question);
+    
+    // console.log(question[1]);
+})
 
 //app listening on port :
 app.listen(port,()=>{

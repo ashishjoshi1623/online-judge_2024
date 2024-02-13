@@ -1,9 +1,7 @@
 .body{
-    background-image: url(../../../public/bgImg/admin-bgImg1.jpg);
-    /* background-size: 100vw 100vh; */
-    background-size: cover;
-    background-repeat: no-repeat; 
-    background-attachment: fixed;
+    /* background-image: url(../../../public/bgImg/admin-bgImg1.jpg); */
+    background-image: radial-gradient(rgb(241, 195, 237), rgb(44, 21, 42));
+    /* background-color: radial-gradient(rgb(241, 195, 237), rgb(44, 21, 42)); */
 }
 
 .admin-nav-section{
@@ -25,7 +23,7 @@
     font-family: 'PT Serif', serif;
     font-weight: 700;
     font-style: italic;
-    color: #787779;
+    color: #4a474e;
 }
 
 .welcome-text{
@@ -45,22 +43,24 @@
     margin: 1rem;
 }
 
-.container{
+.admin-container{
+    background-color: rgba(255, 255, 255, 0.519);
+    border: 1px solid rgba(255, 192, 203, 0.678);
+    height: 100%;
     width: 60vw;
     margin-left: 20vw;
     padding-top: 5vh;
 }
 
 .addValue-container{
-    background-color: rgba(255, 255, 255, 0.519);
-    border: 1px solid rgba(255, 192, 203, 0.678);
+    
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 5rem;
-    height: 70vh;
+    /* height: 70vh; */
 }
 
 .question-title{
@@ -72,13 +72,13 @@
 }
 
 .textcolor-pink{
-    color: rgb(251, 160, 175);
+    color: rgb(158, 16, 39);
     font-size : 20px ;
     font-weight: 700;
 }
 
 .textcolor-grey{
-    color: rgb(108, 105, 105);
+    color: rgb(56, 48, 48);
 }
 
 /* adminLogin css written below */
