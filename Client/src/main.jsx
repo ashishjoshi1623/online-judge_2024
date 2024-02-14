@@ -15,6 +15,7 @@ import Contact from './components/Contact/Contact.jsx';
 import Admin from './components/Admin/Admin.jsx';
 import AdminLogin from './components/Admin/AdminLogin.jsx';
 import Questions from './components/ProblemStatements/Questions.jsx';
+import SolveProblem from './components/ProblemStatements/SolveProblem.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
       <Route path='/adminlogin' element={<AdminLogin />}/>
       <Route path='/adminlogin/admin' element={<Admin />}/>
       <Route path='/questions' element={<Questions />}/>
+      <Route path='/questions/description' element={<SolveProblem />}/>
     </Route>
   )
 )

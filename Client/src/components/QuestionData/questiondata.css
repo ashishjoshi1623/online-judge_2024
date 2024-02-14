@@ -1,0 +1,22 @@
+.quesNameListItem {
+    background-color: rgba(28, 29, 98, 0.585);
+    font-family: 'PT Serif', serif;
+    font-style:normal;
+    font-size: medium;
+    color: rgb(0, 1, 53);
+    margin-bottom: 15px;
+    margin-left: 5px;
+    margin-top: 5px;
+    padding: 1rem;
+    width: 70vw;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    list-style-type: none;
+    
+}
+
+li:hover{
+    cursor: pointer;
+}

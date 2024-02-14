@@ -18,7 +18,7 @@ function Home() {
         <h1 className="heading">Welcome to : <h1 className='home-Heading' style={{color : "#7dbeff"}}>Trash \n</h1> <h1 className='home-Heading' style={{color : "#c17eff"}}>Codes ;</h1></h1>
       </div>
     </section>
-
+    
     <section className='home-Explore'>
      <div className="explore-container">
       <div className="explore-heading">
@@ -37,8 +37,10 @@ function Home() {
             
         </div>
 
+
      </div>
     </section>
+    <hr className='hori-rule'/>
     <Footer />
     </>
   )

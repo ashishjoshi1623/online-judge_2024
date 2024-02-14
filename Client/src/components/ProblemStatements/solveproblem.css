@@ -1,0 +1,20 @@
+.solve{
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* grid-template-rows: 1fr 1fr; */
+    gap: 1rem;
+    margin: 1rem;
+}
+
+.leftDesc{
+    border: 1px solid rgb(82, 78, 78);
+    border-radius: 5px;
+    background-color: rgba(28, 29, 98, 0.585);
+}
+
+.codeEditor{
+    border: 1px solid rgb(87, 81, 81);
+    border-radius: 5px;
+    background-color: rgba(28, 29, 98, 0.478);
+}

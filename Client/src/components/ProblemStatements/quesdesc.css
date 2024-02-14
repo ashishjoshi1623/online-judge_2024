@@ -1,0 +1,22 @@
+.problemTitle{
+    font-family: 'PT Serif', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: xx-large;
+    color: rgb(150, 66, 66);
+    margin-bottom: 15px;
+    margin-left: 5px;
+    margin-top: 5px;
+    padding: 10px;
+}
+
+.qStatement {
+    font-family: 'PT Serif', serif;
+    font-style:normal;
+    font-size: medium;
+    color: rgba(15, 14, 14, 0.719);
+    margin-bottom: 15px;
+    margin-left: 5px;
+    margin-top: 5px;
+    padding: 1rem;
+}

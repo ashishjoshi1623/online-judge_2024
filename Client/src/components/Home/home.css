@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #10023185;
+    background-color: #100231ac;
     width: 80vw;
     color: #ffffff;
 }
@@ -29,7 +29,7 @@
 }
 
 .explore-container{
-    background-color: #1202378b;
+    background-color: #100231ac;
     border-top-left-radius: 100px;
     border-bottom-left-radius: 12px;
     margin-left: 20vw;
@@ -59,4 +59,11 @@
     font-weight: 400;
     font-style: italic;
     color: #ffffff;
+}
+
+.hori-rule{
+    width: 60vw;
+    margin-left: 20vw;
+    margin-top: 2rem;
+    color: #017af2;
 }

@@ -167,7 +167,8 @@ app.post("/api/question",cors(), async (req,res)=>{
 //send questions as response
 app.post("/api/allquestions",cors(),async (req,res) => {
     try {
-        const question = await Question.find();
+        const question = await Question.find().select("-problemStatement -output -testCases");
+        // console.log(question);
         res.json(JSON.stringify(question));
     } catch (error) {
         throw new ApiError(500,"Something went wrong");
@@ -176,6 +177,20 @@ app.post("/api/allquestions",cors(),async (req,res) => {
     // const questionObj = Object.assign({},question);
     
     // console.log(question[1]);
+})
+
+//get question Description
+app.get("/api/description/:title",cors(),async (req,res)=>{
+    const title = req.params.title;
+    // console.log(title);
+    try {
+        const questionDescription = await Question.find({title}).select("-createdAt -updatedAt");
+        res.json(JSON.stringify(questionDescription))
+    } catch (error) {
+        throw new ApiError(500,"Something went wrong");
+    }
+    
+
 })
 
 //app listening on port :
