@@ -8,10 +8,15 @@ import {Admin} from "./models/admin.models.js";
 import { ApiError } from "./utils/ApiError.js";
 import {ApiResponse} from "./utils/ApiResponse.js"
 import {Question} from "./models/question.models.js"
+import { generateFile } from "./utils/generateFile.js";
+import { executeCpp } from "./utils/executeCpp.js";
+import { executeJava } from "./utils/executeJava.js";
+import { executePy } from "./utils/executePy.js";
 
 const app = express();
 const port = process.env.PORT || 3000; //port from .env or 3000
 
+//To use .env file
 dotenv.config({
     path : '../env'
 })
@@ -22,13 +27,14 @@ connectDB()
 //Middlewares
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 
 //http methods
 app.get("/",cors(), (req,res)=>{
     res.send("hello");
 });
-
-
 
 // Post method fetching "Register" credentials
 app.post("/api/register",cors(), async (req,res) => {
@@ -67,7 +73,6 @@ app.post("/api/register",cors(), async (req,res) => {
         )
 });
 
-
 // Post method fetching "Login" credentials
 app.post("/api/login",cors(), async (req,res)=>{
     const {username , password } = req.body.loginUserData;
@@ -102,7 +107,6 @@ app.post("/api/login",cors(), async (req,res)=>{
         new ApiResponse(409, {message : "username or password is incorrect !"} , "username or password is incorrect !")
         )
 });
-
 
 // Admin Login 
 app.post("/api/adminlogin" ,cors(), async (req,res) => {
@@ -191,6 +195,40 @@ app.get("/api/description/:title",cors(),async (req,res)=>{
     }
     
 
+})
+
+//compiler functioning route
+app.post("/api/run", cors(), async(req,res) => {
+    const { language = 'cpp' , code } = req.body;
+
+    if(code === undefined){
+        return res.status(404).json({ success: false, error: "Empty code!" });
+    }
+
+    try {
+        const filePath = await generateFile(language, code)
+        //D:\AlgoUniversity\online-judge\Server\src\utils\codes\1f7c24ba-74d5-47e5-a0c7-ed41687c2d80.cpp
+
+        let output = "";
+        if(language === 'cpp'){
+            output = await executeCpp(filePath);
+            return res.json({filePath,output});
+        }
+
+        else if(language === 'java'){
+            output = await executeJava(filePath);
+            return res.json({filePath,output});
+        }
+
+        else{
+            output = await executePy(filePath);
+            return res.json({filePath,output});
+        }
+
+        
+    } catch (error) {
+        return res.status(500).json({ error: error });
+    }
 })
 
 //app listening on port :
