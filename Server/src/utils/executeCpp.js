@@ -12,7 +12,8 @@ if(!fs.existsSync(outputPath)){
     fs.mkdirSync(outputPath, { recursive : true });
 }
 
-const executeCpp = async (filePath) => {
+const executeCpp = async (filePath,testCase) => {
+    // console.log(testCase);
     const jobId = path.basename(filePath).split(".")[0]; //['filename','cpp'], get only 'filename'
     const execFile = `${jobId}.exe`;
     const outPath = path.join(outputPath,execFile); //D:\AlgoUniversity\online-judge\Server\src\utils\cppOutputs\a760bde8-f573-49b4-a11a-31a2e3b4cf31.exe

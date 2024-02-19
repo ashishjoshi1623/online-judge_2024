@@ -199,20 +199,36 @@ app.get("/api/description/:title",cors(),async (req,res)=>{
 
 //compiler functioning route
 app.post("/api/run", cors(), async(req,res) => {
-    const { language = 'cpp' , code } = req.body;
+    const { language = 'cpp' , code, title } = req.body;
+    let testCases = [];
+    let finalOutput = [];
 
     if(code === undefined){
         return res.status(404).json({ success: false, error: "Empty code!" });
     }
 
     try {
+        const test = await Question.find({title}).select("testCases output");
+        testCases = test[0].testCases; //[ '2 5' ]
+        finalOutput = test[0].output; //[ '7' ]
+
+        // console.log(testCases , finalOutput); //[ '2 5' ] [ '7' ]
+
+    } catch (error) {
+        throw new ApiError(500,"Something went wrong with DataBase");
+    }
+
+    
+        try {
         const filePath = await generateFile(language, code)
         //D:\AlgoUniversity\online-judge\Server\src\utils\codes\1f7c24ba-74d5-47e5-a0c7-ed41687c2d80.cpp
 
         let output = "";
         if(language === 'cpp'){
-            output = await executeCpp(filePath);
-            return res.json({filePath,output});
+            for(var i = 0; i<testCases.length; i++){
+                output = await executeCpp(filePath,testCases[i]);
+                return res.json({filePath,output});
+            }
         }
 
         else if(language === 'java'){
@@ -229,6 +245,8 @@ app.post("/api/run", cors(), async(req,res) => {
     } catch (error) {
         return res.status(500).json({ error: error });
     }
+
+    
 })
 
 //app listening on port :
