@@ -5,8 +5,14 @@ import QuestionData from '../QuestionData/QuestionData'
 import axios from 'axios';
 import Header from '../Header/Header.jsx'
 import Footer from '../Footer/Footer.jsx'
+import { useLocation } from 'react-router-dom';
+
 
 function Questions() {
+
+  const location = useLocation();
+  const username = location.state.data;
+  // console.log(username)
 
   const [questionData,setQuestionData] = useState([]);
 
@@ -25,10 +31,10 @@ function Questions() {
 
   return (
     <>
-        <Header />
+        <Header page="problems" user={username}/>
         {/* questionData has a template of displaying question title as a list */}
         <div>
-        <QuestionData data = {questionData}/>
+        <QuestionData data = {questionData} user = {username}/>
         </div>
         <Footer />
     </>

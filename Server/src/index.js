@@ -224,21 +224,51 @@ app.post("/api/run", cors(), async(req,res) => {
         //D:\AlgoUniversity\online-judge\Server\src\utils\codes\1f7c24ba-74d5-47e5-a0c7-ed41687c2d80.cpp
 
         let output = "";
+        let message = [];
+        let outputArray = [];
         if(language === 'cpp'){
             for(var i = 0; i<testCases.length; i++){
                 output = await executeCpp(filePath,testCases[i]);
-                return res.json({filePath,output});
+                outputArray.push(output);
+                if(output === finalOutput[i]){
+                    console.log("success");
+                    message.push(`Testcase ${i+1} Success`);
+                    
+                }
+                else{
+                    message.push(`Testcase ${i+1} Failed`);
+                }
             }
+            return res.json({output : outputArray,message : message, testCases : testCases, expectedOutput : finalOutput});
         }
 
         else if(language === 'java'){
-            output = await executeJava(filePath);
-            return res.json({filePath,output});
+            for(var i = 0; i<testCases.length; i++){
+                output = await executeJava(filePath,testCases[i]);
+                outputArray.push(output);
+                if(output === finalOutput[i]){
+                    message.push(`Testcase ${i+1} Success`);
+                }
+                else{
+                    message.push(`Testcase ${i+1} Failed`);
+                }   
+            }    
+            return res.json({output : outputArray,message : message, testCases : testCases, expectedOutput : finalOutput});
         }
 
         else{
-            output = await executePy(filePath);
-            return res.json({filePath,output});
+            for(var i = 0; i<testCases.length; i++){
+                output = await executePy(filePath,testCases[i]);
+                outputArray.push(output);
+                // console.log(output);
+                if(output === finalOutput[i]){
+                    message.push(`Testcase ${i+1} Success`);
+                }
+                else{
+                    message.push(`Testcase ${i+1} Failed`);
+                }
+            }
+            return res.json({output : outputArray ,message : message, testCases : testCases, expectedOutput : finalOutput});
         }
 
         

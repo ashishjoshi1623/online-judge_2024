@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import {exec} from "child_process";
+import {exec , spawn} from "child_process";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,7 +20,7 @@ const executeCpp = async (filePath,testCase) => {
 
     return new Promise((resolve, reject) => {
         exec(
-            `g++ ${filePath} -o ${outPath} && cd ${outputPath} && .\\${execFile}`,
+            `g++ ${filePath} -o ${outPath}`,
             (error, stdout, stderr) => {
                 if (error) {
                     reject({ error, stderr });
@@ -28,7 +28,14 @@ const executeCpp = async (filePath,testCase) => {
                 if (stderr) {
                     reject(stderr);
                 }
-                resolve(stdout);
+                const child = spawn(`${outputPath}.\\${execFile}`);
+                child.stdin.write(testCase);
+                child.stdin.end();
+                child.stdout.on("data", (data) => {
+                    // console.log(`child stdout:\n${data}`);
+                    resolve(`${data}`);
+                });
+                
             }
         );
     });

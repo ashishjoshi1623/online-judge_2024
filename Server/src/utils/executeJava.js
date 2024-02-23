@@ -14,7 +14,7 @@ if(!fs.existsSync(outputPath)){
     fs.mkdirSync(outputPath, { recursive : true });
 }
 
-const executeJava = async (filePath) => {
+const executeJava = async (filePath, testCase) => {
     spawnSync("javac", ["-d", outputPath, filePath]);
 
     const mainClass = await getMainClass(); //HelloWorld.class
@@ -22,7 +22,7 @@ const executeJava = async (filePath) => {
     
     return new Promise((resolve, reject) => {
         // const mainClass = fileToExec.split(".")[0];
-        exec(
+        const child = exec(
             `cd ${outputPath} && java ${mainClassName} && rm ${mainClass}`,
             //callback
             (error, stdout, stderr) => {
@@ -36,6 +36,12 @@ const executeJava = async (filePath) => {
             }
         
         )
+        child.stdin.write(testCase);
+        child.stdin.end();
+        child.stdout.on("data", (data) => {
+            // console.log(`child stdout:\n${data}`);
+            resolve(`${data}`);
+        });
     })
 }
 

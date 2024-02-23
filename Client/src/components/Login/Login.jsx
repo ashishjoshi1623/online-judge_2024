@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
+import { Link } from "react-router-dom";
 
 export default function Login() {
 
@@ -47,7 +48,7 @@ export default function Login() {
 
   return (
     <>
-    <Header />
+    <Header page="login" user="User"/>
     <div className="login-container">
       <form onSubmit={submitLoginForm}>
         <div className="login">
@@ -82,6 +83,10 @@ export default function Login() {
           <div className="loginButton my-4">
           <input className="login-button" type="submit" value="Login" />
         </div>
+        <div className="loginRouteContainer input">
+            <p className="loginINstruction">New User?</p>
+              <Link to="/register" className="login-btnroute">Register</Link>
+            </div>
         </div>
       </form>
     </div>

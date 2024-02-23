@@ -10,13 +10,17 @@ import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
+import Output from './Output.jsx';
 
 function SolveProblem() {
     const location = useLocation();
     const title = location.state; //Question title (unique)
     const [questionData,setQuestionData] = useState([]);
     const [language, setLanguage] = useState('cpp');
-    const [output,setOutput] = useState('');
+    const [output,setOutput] = useState([]);
+    const [testCases,setTestCases] = useState([]);
+    const [expOutput,setExpOutput] = useState([]); //expected output
+    const [successMessage,setSuccessMessage] = useState([]);
     const [code, setCode] = React.useState(
       `#include <iostream>
       using namespace std;
@@ -34,7 +38,12 @@ function SolveProblem() {
           code : code,
           title : title
         })
+        
         setOutput(response.data.output);
+        setTestCases(response.data.testCases);
+        setExpOutput(response.data.expectedOutput);
+        setSuccessMessage(response.data.message);
+        // console.log(output,testCases,expOutput,successMessage);
       } catch (error) {
         setOutput("Syntax Error")
       }
@@ -51,7 +60,7 @@ function SolveProblem() {
         if(responseData.length > 0){
             setQuestionData(responseData);
         }
-        console.log(questionData);
+        // console.log(questionData);
        
     }
 
@@ -62,7 +71,7 @@ function SolveProblem() {
 
   return (
     <>
-        <Header />
+        <Header page="problems" />
         <section className='solve'>
         <div className='leftDesc'>
         <Quesdesc data = {questionData} />
@@ -88,7 +97,7 @@ function SolveProblem() {
         </div>
         <div className="outputDiv">
           <h5 className='outputHeading'>Output</h5>
-          <h4>{output}</h4>
+          <Output output={output} testCases = {testCases} expectedOutput = {expOutput} message = {successMessage}/>
           </div>
         </div>
         </section>

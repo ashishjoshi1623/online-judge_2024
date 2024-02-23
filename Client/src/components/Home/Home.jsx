@@ -12,7 +12,7 @@ function Home() {
 
   return (
     <>
-    <Header />
+    <Header page="register" user="User"/>
     <section className='home-section'>
       <div className="home-container">
         <h1 className="heading">Welcome to : <h1 className='home-Heading' style={{color : "#7dbeff"}}>Trash \n</h1> <h1 className='home-Heading' style={{color : "#c17eff"}}>Codes ;</h1></h1>

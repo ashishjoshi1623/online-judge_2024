@@ -53,7 +53,7 @@ export default function Register() {
     
      return (
       <>
-      <Header />
+      <Header page="register" user="User"/>
       <section className="register-section">
         <form onSubmit={ handleSubmit } >
           <div className="register-container">
