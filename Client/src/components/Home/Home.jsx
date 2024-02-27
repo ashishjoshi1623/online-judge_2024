@@ -1,14 +1,10 @@
 import React from 'react';
-import { useLocation, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import "./home.css"
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 function Home() {
-
-  // const location = useLocation();
-  // const data = location.state;
-  // console.log(data);
 
   return (
     <>

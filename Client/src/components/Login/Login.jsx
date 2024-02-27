@@ -13,7 +13,6 @@ export default function Login() {
   const [username,setUserName] = useState('');
   const [password,setPassword] = useState('');
   const [errorMessage,setErrorMessage] = useState('');
-  const [loggedUser,setLoggedUser] = useState('');
 
   
 
@@ -37,7 +36,6 @@ export default function Login() {
      
       console.log(loginResponse.data);
       setErrorMessage(loginResponse.data.message)
-      // setLoggedUser(loginResponse.data.username)
       
 
     } catch (error) {

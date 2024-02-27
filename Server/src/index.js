@@ -353,6 +353,21 @@ app.post("/api/run", cors(), async(req,res) => {
     
 })
 
+// send submissions as response if present
+app.post("/api/submission", cors(), async(req,res) => {
+    const {userId, questionId} = req.body;
+    // console.log(req.body);
+    const isSubmission = await Submission.find({user : userId, question : questionId}).select("lastSubmission");
+
+    // console.log(isSubmission)
+    if(isSubmission){
+        res.json(JSON.stringify(isSubmission));
+    }
+    else{
+        res.json({"message" : "No record found"});
+    }
+})
+
 //app listening on port :
 app.listen(port,()=>{
     console.log(`server running at port ${port}`);

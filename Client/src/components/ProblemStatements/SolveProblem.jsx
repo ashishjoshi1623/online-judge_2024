@@ -11,6 +11,7 @@ import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
 import Output from './Output.jsx';
+import Submission from './Submission.jsx';
 
 function SolveProblem() {
     const location = useLocation();
@@ -31,6 +32,7 @@ function SolveProblem() {
           return 0;
       }`
     );
+    const [show, setShow] = useState(true);
 
     async function handleSubmit(){
       // console.log("Clicked");
@@ -60,12 +62,12 @@ function SolveProblem() {
     async function getQuestionDesc(){
     
         const response = await axios.get(`${import.meta.env.VITE_API_PORT}/api/description/${title}`);
-        const responseData = JSON.parse(response.data);
+        const responseData = await JSON.parse(response.data);
             
         if(responseData.length > 0){
             setQuestionData(responseData);
         }
-        // console.log(questionData[0]._id); '65cb0b1fac1ef2dbf291e3a6'
+        // console.log(questionData[0]); //'65cb0b1fac1ef2dbf291e3a6'
        
     }
 
@@ -78,33 +80,39 @@ function SolveProblem() {
     <>
         <Header page="problems" user={user}/>
         <section className='solve'>
-        <div className='leftDesc'>
-        <Quesdesc data = {questionData} />
-        </div>
-        <div className="codeEditor">
-          <div className="languageSelector">
-            <select onChange={e => {setLanguage(e.target.value)}} className='langOption' name="languageSelection" id="languageSelection" >
-              <option value="cpp">C++</option>
-              <option value="java">Java</option>
-              <option value="py">Python</option>
-            </select>
-          </div>
-          <div className="editordiv">
-            <Editor
-              value={code}
-              onValueChange={code => setCode(code)}
-              highlight={code => highlight(code, languages.js)}
-              padding={20}
-            />
-        </div>
-        <div className="codeSubmitBtnDiv">
-          <button onClick={handleSubmit} className='px-3 codeSubmitBtn'>Run</button>
-        </div>
-        <div className="outputDiv">
-          <h5 className='outputHeading'>Output</h5>
-          <Output output={output} testCases = {testCases} expectedOutput = {expOutput} message = {successMessage}/>
-          </div>
-        </div>
+
+            <div className='leftDesc'>
+                <Quesdesc data = {questionData} />
+              <button className='mx-3 px-3 codeSubmitBtn' onClick={async() => setShow(!show)}>
+                      {show ? "Hide" : "Show"} Submissions
+                    </button>
+                <Submission status={show} userId={userId} questionData = {questionData}/>
+            </div>
+
+            <div className="codeEditor">
+                  <div className="languageSelector">
+                    <select onChange={e => {setLanguage(e.target.value)}} className='langOption' name="languageSelection" id="languageSelection" >
+                      <option value="cpp">C++</option>
+                      <option value="java">Java</option>
+                      <option value="py">Python</option>
+                    </select>
+                  </div>
+                  <div className="editordiv">
+                    <Editor
+                      value={code}
+                      onValueChange={code => setCode(code)}
+                      highlight={code => highlight(code, languages.js)}
+                      padding={20}
+                    />
+                </div>
+                <div className="codeSubmitBtnDiv">
+                  <button onClick={handleSubmit} className='px-3 codeSubmitBtn'>Run</button>
+                </div>
+                <div className="outputDiv">
+                  <h5 className='outputHeading'>Output</h5>
+                  <Output output={output} testCases = {testCases} expectedOutput = {expOutput} message = {successMessage}/>
+                  </div>
+            </div>
         </section>
         <Footer />
     </>

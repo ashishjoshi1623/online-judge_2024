@@ -60,3 +60,15 @@
 .outputHeading{
     text-align: center;
 }
+
+.submissionText{
+    background-color: white;
+    color: black;
+    height: auto;
+    width: auto;
+    padding: 1rem;
+    margin: 1rem;
+    font-family: 'PT Serif', serif;
+    font-style:normal;
+    font-size: medium;
+}
