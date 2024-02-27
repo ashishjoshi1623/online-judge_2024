@@ -12,7 +12,7 @@ function QuestionData(props) {
             props.data.map( (curr) => {
                 const {id,title} = curr;
                 function getDescription(){
-                    navigate('/questions/description', {state : title})
+                    navigate('/questions/description', {state : {title : title, user : props.user, userId : props.userId}})
                 }
 
 

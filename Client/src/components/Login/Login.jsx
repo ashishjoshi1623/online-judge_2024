@@ -30,8 +30,9 @@ export default function Login() {
         const loginResponse = await axios.post("http://localhost:3000/api/login",{
         loginUserData
       });
+      console.log(loginResponse);
       if(loginResponse.data.statusCode === 201){
-        navigate("/questions",{ state : {data : username}})
+        navigate("/questions",{ state : loginResponse.data })
       }
      
       console.log(loginResponse.data);

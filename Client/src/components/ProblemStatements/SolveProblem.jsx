@@ -14,7 +14,9 @@ import Output from './Output.jsx';
 
 function SolveProblem() {
     const location = useLocation();
-    const title = location.state; //Question title (unique)
+    const title = location.state.title; //Question title (unique)
+    const user = location.state.user; //username
+    const userId = location.state.userId; //username
     const [questionData,setQuestionData] = useState([]);
     const [language, setLanguage] = useState('cpp');
     const [output,setOutput] = useState([]);
@@ -36,7 +38,10 @@ function SolveProblem() {
         const response = await axios.post(`${import.meta.env.VITE_API_PORT}/api/run`,{
           language : language,
           code : code,
-          title : title
+          title : title, 
+          user : user,
+          userId : userId,
+          questionId : questionData[0]._id,
         })
         
         setOutput(response.data.output);
@@ -60,7 +65,7 @@ function SolveProblem() {
         if(responseData.length > 0){
             setQuestionData(responseData);
         }
-        // console.log(questionData);
+        // console.log(questionData[0]._id); '65cb0b1fac1ef2dbf291e3a6'
        
     }
 
@@ -71,7 +76,7 @@ function SolveProblem() {
 
   return (
     <>
-        <Header page="problems" />
+        <Header page="problems" user={user}/>
         <section className='solve'>
         <div className='leftDesc'>
         <Quesdesc data = {questionData} />

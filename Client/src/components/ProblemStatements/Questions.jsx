@@ -11,8 +11,9 @@ import { useLocation } from 'react-router-dom';
 function Questions() {
 
   const location = useLocation();
-  const username = location.state.data;
-  // console.log(username)
+  const username = location.state.data.username;
+  const userId = location.state.data.userId;
+  console.log(username); //'65c9c2cd3f47ec7777e0cf04'
 
   const [questionData,setQuestionData] = useState([]);
 
@@ -31,10 +32,10 @@ function Questions() {
 
   return (
     <>
-        <Header page="problems" user={username}/>
+        <Header page="problems" user={username} userId = {userId}/>
         {/* questionData has a template of displaying question title as a list */}
         <div>
-        <QuestionData data = {questionData} user = {username}/>
+        <QuestionData data = {questionData} user = {username} userId = {userId}/>
         </div>
         <Footer />
     </>

@@ -40,7 +40,7 @@ const executeJava = async (filePath, testCase) => {
         child.stdin.end();
         child.stdout.on("data", (data) => {
             // console.log(`child stdout:\n${data}`);
-            resolve(`${data}`);
+            resolve(`${data.trim()}`);
         });
     })
 }
