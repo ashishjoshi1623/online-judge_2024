@@ -9,9 +9,10 @@ const executePy = async (filePath,testCase) => {
       str = str + inputs[i] + "\n";
     }
     str = str + inputs[inputs.length -1];
+    // console.log(str);
 
     return await new Promise((resolve, reject) => {
-      const pythonProcess = spawn("python3", [filePath]);
+      const pythonProcess = spawn("python", [filePath]);
         if(testCase){
         pythonProcess.stdin.write(str);
         pythonProcess.stdin.end();
