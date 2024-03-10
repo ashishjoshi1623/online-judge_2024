@@ -22,6 +22,9 @@ const executeCpp = async (filePath, testCase) => {
             `g++ ${filePath} -o ${outPath}`,
             (error, stdout, stderr) => {
                 if (error) {
+                    // console.log("compiletime error: " + error);
+                    let errOutput = 'syntax error';
+                    resolve(errOutput);
                     reject({ error, stderr });
                 }
                 if (stderr) {
@@ -38,6 +41,8 @@ const executeCpp = async (filePath, testCase) => {
                     resolve(output);
                 });
                 child.on("error", (err) => {
+                    let errOutput = 'system error';
+                    resolve(errOutput);
                     reject(err);
                 });
             }

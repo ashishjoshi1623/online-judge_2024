@@ -22,7 +22,9 @@ const executePy = async (filePath,testCase) => {
           result += data.toString();
         });
         pythonProcess.stderr.on("data", (data) => {
-         reject(`Error from ashish: ${data.toString()}`);
+          let errOutput = 'syntax error';
+          resolve(errOutput);
+          reject(`Error from ashish: ${data.toString()}`);
         });
         pythonProcess.stdout.on("end", () => {
           resolve(result.trim()); // Resolve with trimmed string

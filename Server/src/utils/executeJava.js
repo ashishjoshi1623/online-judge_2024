@@ -27,6 +27,8 @@ const executeJava = async (filePath, testCase) => {
             //callback
             (error, stdout, stderr) => {
                 if (error) {
+                    let errOutput = 'syntax error';
+                    resolve(errOutput);
                     reject({ error, stderr });
                 }
                 if (stderr) {
