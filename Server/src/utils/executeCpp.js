@@ -1,22 +1,21 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import {exec , spawn} from "child_process";
+import { exec, spawn } from "child_process";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath(import.meta.url); //current file path
+const __dirname = path.dirname(__filename); //utils folder
 
-const outputPath = path.join(__dirname,"cppOutputs"); //D:\AlgoUniversity\online-judge\Server\src\utils\cppOutputs
+const outputPath = path.join(__dirname, "cppOutputs"); //create cppoutput folder inside utils folder
 
-if(!fs.existsSync(outputPath)){
-    fs.mkdirSync(outputPath, { recursive : true });
+if (!fs.existsSync(outputPath)) {
+    fs.mkdirSync(outputPath, { recursive: true });
 }
 
-const executeCpp = async (filePath,testCase) => {
-    // console.log(testCase);
-    const jobId = path.basename(filePath).split(".")[0]; //['filename','cpp'], get only 'filename'
+const executeCpp = async (filePath, testCase) => {
+    const jobId = path.basename(filePath).split(".")[0];
     const execFile = `${jobId}.exe`;
-    const outPath = path.join(outputPath,execFile); //D:\AlgoUniversity\online-judge\Server\src\utils\cppOutputs\a760bde8-f573-49b4-a11a-31a2e3b4cf31.exe
+    const outPath = path.join(outputPath, execFile);
 
     return new Promise((resolve, reject) => {
         exec(
@@ -28,18 +27,22 @@ const executeCpp = async (filePath,testCase) => {
                 if (stderr) {
                     reject(stderr);
                 }
-                const child = spawn(`${outputPath}.\\${execFile}`);
+                const child = spawn(outPath); // Corrected path usage here
                 child.stdin.write(testCase);
                 child.stdin.end();
+                let output = '';
                 child.stdout.on("data", (data) => {
-                    // console.log(`child stdout:\n${data}`);
-                    resolve(`${data}`);
+                    output += data;
                 });
-                
+                child.on("close", (code) => {
+                    resolve(output);
+                });
+                child.on("error", (err) => {
+                    reject(err);
+                });
             }
         );
     });
-
 }
 
-export {executeCpp}
+export { executeCpp };
