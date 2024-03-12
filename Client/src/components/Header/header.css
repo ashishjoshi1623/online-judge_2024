@@ -1,8 +1,10 @@
 .nav-section{
-    background-color:#120237d0;
+    /* background-color:#120237d0; */
+    background-image: radial-gradient(rgb(47, 15, 90),rgb(0, 0, 0));
     display: flex;
     justify-content: center;
     height: 12vh;
+    border-bottom: 1px solid rgba(128, 67, 1, 0.398);
 }
 .appname1
 {

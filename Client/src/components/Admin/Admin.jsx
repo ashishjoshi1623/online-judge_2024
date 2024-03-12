@@ -164,7 +164,7 @@ export default function Admin() {
   }
   else{
     return(
-        <h1 style={{color : 'white'}}>INVALID URL !!</h1>
+        <h1 style={{color : 'black'}}>INVALID URL !!</h1>
     )
   }
 }

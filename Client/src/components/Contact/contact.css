@@ -6,7 +6,8 @@
 }
 
 .container-contact{
-    background-color: #19083f89;
+    /* background-color: #19083f89; */
+    background-image: radial-gradient(rgb(47, 15, 90),rgb(0, 0, 0));
     border: 1px solid #f18c0872;
     border-radius: 5%;
     display: flex;
@@ -19,7 +20,7 @@ textarea {
     height: 150px;
     padding: 12px 20px;
     box-sizing: border-box;
-    border: 2px solid #ec860986;
+    /* border: 2px solid #ec860986; */
     border-radius: 4px;
     background-color: #f8f8f8;
     font-size: 16px;

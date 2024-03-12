@@ -12,7 +12,8 @@
 }
 
 .register-container{
-    background-color: #19083fa7;
+    /* background-color: #19083fa7; */
+    background-image: radial-gradient(rgb(47, 15, 90),rgb(0, 0, 0));
     border: 1px solid rgba(207, 130, 7, 0.222);
     border-radius: 10px;
     height: 70vh;
@@ -30,6 +31,10 @@ input{
     border-radius: 10px;
     padding: 6px;
     color: #000000;
+}
+
+input:focus {
+    outline: none; /* or outline: 0; */
 }
 
 .Register-btn{
@@ -85,12 +90,12 @@ input{
     }
     
     input{
-        border: 2px solid #c17eff;
+        border: 2px solid white;
         width: 20rem;
         height: 3.5rem;
         border-radius: 10px;
         padding: 6px;
-        color: #8bb9ed;
+        color: black;
     }
     
     .Register-btn{

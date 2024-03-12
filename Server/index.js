@@ -203,10 +203,12 @@ app.get("/api/description/:title",cors(),async (req,res)=>{
 
 //compiler functioning route
 app.post("/api/run", cors(), async(req,res) => {
-    const { language = 'cpp' , code, title, user, userId, questionId } = req.body;
-    // console.log(questionId); //65cb0b1fac1ef2dbf291e3a6
+    const { language = 'cpp' , code, title, user, userId, questionId, customInput } = req.body;
+    // console.log(customInput);
     let testCases = [];
     let finalOutput = [];
+
+   
 
     if(code === undefined){
         return res.status(404).json({ success: false, error: "Empty code!" });
@@ -221,6 +223,10 @@ app.post("/api/run", cors(), async(req,res) => {
 
     } catch (error) {
         throw new ApiError(500,"Something went wrong with DataBase");
+    }
+
+    if(customInput) {
+        testCases.push(customInput);
     }
 
     

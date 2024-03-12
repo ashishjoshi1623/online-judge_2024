@@ -24,7 +24,7 @@ function Submission(props) {
 
   return (
     <div
-      style={{ visibility: props.status ? "visible" : "hidden" }}
+      style={{ visibility: props.status ? "hidden" : "visible" }}
       className="box"
     >
     {

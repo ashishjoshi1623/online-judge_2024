@@ -1,5 +1,7 @@
 .footer-section{
-    background-color:#120237da;
+    /* background-color:#120237da; */
+    background-image: radial-gradient(rgb(47, 15, 90),rgb(0, 0, 0));
+    border-top: 1px solid rgba(128, 67, 1, 0.459);
 }
 
 p{

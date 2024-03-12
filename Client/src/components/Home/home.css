@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(10, 1, 32);
+    background-color: rgb(255, 255, 255);
 }
 .home-container{
     height: 40vh;
@@ -19,9 +19,11 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #16063c9f;
+    /* background-color: #16063c9f; */
+    background-image: radial-gradient(rgb(47, 15, 90),rgb(0, 0, 0));
     width: 80vw;
     color: #ffffff;
+    border-bottom: 1px solid rgba(138, 51, 7, 0.436);
 }
 
 .home-Explore{
@@ -32,9 +34,12 @@ body{
 }
 
 .explore-container{
-    background-color: #16063c9f;
+    /* background-color: #16063c9f; */
+    background-image: radial-gradient(rgb(47, 15, 90),rgb(0, 0, 0));
+    /* background-image: radial-gradient(rgb(0, 0, 0),rgb(47, 15, 90)); */
     border-top-left-radius: 100px;
     border-bottom-left-radius: 12px;
+    border-top: 1px solid rgba(138, 51, 7, 0.436);
     margin-left: 20vw;
     width: 80vw;
     height: 30vh;

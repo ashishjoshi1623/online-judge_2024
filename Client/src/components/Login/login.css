@@ -20,7 +20,8 @@
 
 .login{
     border: 1px solid rgba(226, 161, 11, 0.414);
-    background-color: #19083fa3;
+    /* background-color: #19083fa3; */
+    background-image: radial-gradient(rgb(47, 15, 90),rgb(0, 0, 0));
     border-radius: 10px;
     height: 60vh;
     width: 350px;

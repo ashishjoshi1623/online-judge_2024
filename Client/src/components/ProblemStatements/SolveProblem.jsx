@@ -24,6 +24,7 @@ function SolveProblem() {
     const [testCases,setTestCases] = useState([]);
     const [expOutput,setExpOutput] = useState([]); //expected output
     const [successMessage,setSuccessMessage] = useState([]);
+    const [customInput,setCustomInput] = useState('');
     const [code, setCode] = React.useState(
       `#include <iostream>
       using namespace std;
@@ -44,6 +45,7 @@ function SolveProblem() {
           user : user,
           userId : userId,
           questionId : questionData[0]._id,
+          customInput : customInput
         })
         
         setOutput(response.data.output);
@@ -84,7 +86,7 @@ function SolveProblem() {
             <div className='leftDesc'>
                 <Quesdesc data = {questionData} />
               <button className='mx-3 px-3 codeSubmitBtn' onClick={async() => setShow(!show)}>
-                      {show ? "Hide" : "Show"} Submissions
+                      {show ? "Show" : "Hide"} Submissions
                     </button>
                 <Submission status={show} userId={userId} questionData = {questionData}/>
             </div>
@@ -99,11 +101,20 @@ function SolveProblem() {
                   </div>
                   <div className="editordiv">
                     <Editor
+                    className='Editor'
                       value={code}
                       onValueChange={code => setCode(code)}
                       highlight={code => highlight(code, languages.js)}
                       padding={20}
                     />
+                </div>
+                <div className="customInputContainer">
+                  <input 
+                  type="text" 
+                  className="customInput" 
+                  placeholder='custom input'
+                  onChange={(e) => setCustomInput(e.target.value)}
+                  />
                 </div>
                 <div className="codeSubmitBtnDiv">
                   <button onClick={handleSubmit} className='px-3 codeSubmitBtn'>Run</button>

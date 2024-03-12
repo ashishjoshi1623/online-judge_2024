@@ -44,6 +44,7 @@ export default function Register() {
         console.log(statusCode);
 
         if(statusCode === 200 || statusCode === 201 || statusCode === 409){
+          alert("You can now login with your credentials")
           navigate("/login");
         } 
         action.resetForm();

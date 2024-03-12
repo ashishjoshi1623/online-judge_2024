@@ -9,13 +9,15 @@
 .leftDesc{
     border: 1px solid rgb(82, 78, 78);
     border-radius: 5px;
-    background-color: rgba(28, 29, 98, 0.585);
+    /* background-color: rgba(28, 29, 98, 0.585); */
+    background-image: radial-gradient(rgb(47, 15, 90),rgb(0, 0, 0));
 }
 
 .codeEditor{
     border: 1px solid rgb(87, 81, 81);
     border-radius: 5px;
-    background-color: rgba(28, 29, 98, 0.585);
+    /* background-color: rgba(28, 29, 98, 0.585); */
+    background-image: radial-gradient(rgb(47, 15, 90),rgb(0, 0, 0));
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -34,7 +36,8 @@
 .langOption{
     padding: 5px;
     color: white;
-    background-color: rgba(6, 2, 88, 0.712);
+    /* background-color: rgba(6, 2, 88, 0.712); */
+    background-image: radial-gradient(rgb(47, 15, 90),rgb(0, 0, 0));
     margin-top: 1rem;
     border: 1px solid rgb(159, 110, 13);
     border-radius: 5px;
@@ -43,7 +46,8 @@
 .codeSubmitBtn{
     padding: 5px;
     color: white;
-    background-color: rgba(6, 2, 88, 0.712);
+    /* background-color: rgba(31, 2, 88, 0.712); */
+    background-image: radial-gradient(rgb(47, 15, 90),rgb(0, 0, 0));
     margin-top: 1rem;
     border: 1px solid rgb(159, 110, 13);
     border-radius: 5px;
@@ -71,4 +75,13 @@
     font-family: 'PT Serif', serif;
     font-style:normal;
     font-size: medium;
+}
+
+.customInputContainer{
+    background-color: white;
+    height: auto;
+    width: 95%;
+    border-radius: 7px;
+    padding: 20px;
+    margin : 1rem;
 }
