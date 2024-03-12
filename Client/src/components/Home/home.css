@@ -1,3 +1,6 @@
+body{
+    background-color: rgb(10, 1, 32);
+}
 .home-container{
     height: 40vh;
     display: flex;
@@ -16,7 +19,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #100231ac;
+    background-color: #16063c9f;
     width: 80vw;
     color: #ffffff;
 }
@@ -29,7 +32,7 @@
 }
 
 .explore-container{
-    background-color: #100231ac;
+    background-color: #16063c9f;
     border-top-left-radius: 100px;
     border-bottom-left-radius: 12px;
     margin-left: 20vw;

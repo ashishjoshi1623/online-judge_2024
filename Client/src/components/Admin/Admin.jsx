@@ -12,6 +12,8 @@ export default function Admin() {
 
   const location = useLocation();
   const data = location.state;
+  const loggedIn = data ? data.data.statusCode : null;
+  console.log(loggedIn);
 
   //object to collect initial values
   const newQuestionData = {
@@ -59,7 +61,7 @@ export default function Admin() {
     fetchQuestionData()
   }, [])
   
-  if(data.data.statusCode === 200){
+  if(loggedIn){
   return (
     <div className="body">
 
@@ -72,7 +74,6 @@ export default function Admin() {
         <div className="nav-link">
         <Nav className="me-auto">
         <NavLink to="/" className={({isActive})=> `admin-navLink ${isActive ?  "textcolor-pink" :"textcolor-grey"} `}>TrashCodes</NavLink>
-          <NavLink to="/adminlogin/admin" className={({isActive})=> `admin-navLink ${isActive ?  "textcolor-pink" :"textcolor-grey"} `}>Home</NavLink>
           <NavLink to="/adminlogin" className={({isActive})=> `admin-navLink ${isActive ?  "textcolor-pink" :"textcolor-grey"} `}>Logout</NavLink>
           </Nav>
           </div>
@@ -163,7 +164,7 @@ export default function Admin() {
   }
   else{
     return(
-        <h1>INVALID URL !!</h1>
+        <h1 style={{color : 'white'}}>INVALID URL !!</h1>
     )
   }
 }

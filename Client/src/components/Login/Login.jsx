@@ -79,7 +79,7 @@ export default function Login() {
               <p className="loginErrorMessage">{errorMessage}</p>
             ) : null}
           </div>
-          <div className="loginButton my-4">
+          <div className="loginButton mb-2">
           <input className="login-button" type="submit" value="Login" />
         </div>
         <div className="loginRouteContainer input">

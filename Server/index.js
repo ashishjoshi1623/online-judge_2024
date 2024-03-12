@@ -13,6 +13,7 @@ import { executeCpp } from "./src/utils/executeCpp.js";
 import { executeJava } from "./src/utils/executeJava.js";
 import { executePy } from "./src/utils/executePy.js";
 import { Submission } from "./src/models/submission.models.js";
+import { Contact } from "./src/models/contact.models.js";
 
 const app = express();
 const port = process.env.PORT || 3000; //port from .env or 3000
@@ -271,7 +272,7 @@ app.post("/api/run", cors(), async(req,res) => {
             return res.json({output : outputArray,message : message, testCases : testCases, expectedOutput : finalOutput});
         }
 
-            //for java code
+        //for java code
         else if(language === 'java'){
             for(var i = 0; i<testCases.length; i++){
                 output = await executeJava(filePath,testCases[i]);
@@ -308,7 +309,7 @@ app.post("/api/run", cors(), async(req,res) => {
             return res.json({output : outputArray,message : message, testCases : testCases, expectedOutput : finalOutput});
         }
 
-            //for Python code
+        //for Python code
         else{
             for(var i = 0; i<testCases.length; i++){
                 output = await executePy(filePath,testCases[i]);
@@ -365,6 +366,23 @@ app.post("/api/submission", cors(), async(req,res) => {
     else{
         res.json({"message" : "No record found"});
     }
+})
+
+app.post("/api/contactquery", cors(), async(req,res) => {
+    const {contactQuery, personalEmail} = req.body;
+    // console.log(req.body);
+
+    if(!contactQuery || !personalEmail){
+        return res.status(404).json({"message" :"details not found"});
+    }
+
+    else{
+        const submitToDatabase = await Contact.create({contactQuery, personalEmail});
+        
+        console.log(submitToDatabase);
+    }
+    
+
 })
 
 //app listening on port :
