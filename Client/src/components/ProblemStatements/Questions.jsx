@@ -34,7 +34,7 @@ function Questions() {
     <>
         <Header page="problems" user={username} userId = {userId}/>
         {/* questionData has a template of displaying question title as a list */}
-        <div>
+        <div className='questionList'>
         <QuestionData data = {questionData} user = {username} userId = {userId}/>
         </div>
         <Footer />

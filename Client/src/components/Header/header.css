@@ -53,6 +53,11 @@
 }
 
 @media screen and (max-width: 1000px){
+
+    .app-icon{
+        height: 30px;
+        width: 35px;
+    }
     
     .nav-container{
         display: flex;
@@ -62,13 +67,13 @@
         justify-content: space-between;
     }
     .nav-app-logo{
-        padding-top: 40px;
+        padding-top: 20px;
     }
     .nav-app-logo h1 {
-        font-size: xxx-large;
+        font-size: x-large;
     }
     .me-auto{
-        font-size: x-large;
+        font-size: large;
         padding-bottom: 1rem;
     }
     .me-auto a {
