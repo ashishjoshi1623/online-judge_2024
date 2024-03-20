@@ -1,9 +1,8 @@
 .problemTitle{
     font-family: 'PT Serif', serif;
-    font-weight: 400;
-    font-style: italic;
-    font-size: xx-large;
-    color: rgb(150, 66, 66);
+    font-weight: 700;
+    font-size: x-large;
+    color: rgb(0, 0, 0);
     margin-bottom: 15px;
     margin-left: 5px;
     margin-top: 5px;
@@ -14,7 +13,7 @@
     font-family: 'PT Serif', serif;
     font-style:normal;
     font-size: medium;
-    color: rgba(255, 255, 255, 0.719);
+    color: rgba(0, 0, 0, 0.719);
     margin-bottom: 15px;
     margin-left: 5px;
     margin-top: 5px;

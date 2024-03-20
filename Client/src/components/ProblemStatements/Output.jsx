@@ -4,48 +4,23 @@ function Output(props) {
     let i = 1;
   return (
     <>
-    {
-            props.testCases.map( (value) => {
-                return(
-                    <>
-                    <p style={{color : 'black'}}>Test Case {i++} : {value}</p>
-                    </>
-                )
-            })
-    }
-    <hr />
-    {
-            props.output.map( (value) => {
-                return(
-                    <>
-                    <p style={{color : 'black'}}>your output  : {value} </p>
-                    </>
-                )
-            })
-        }
-        <hr />
-    {
-            props.expectedOutput.map( (value) => {
-                return(
-                    <>
-                    <p style={{color : 'black'}}>Expected Output : {value}</p>
-                    </>
-                )
-            })
-        }
-        <hr />
-        
         {
             props.message.map( (value) => {
+                const expected = value.split(' ');
+                let bcolor;
+                if(expected[2] == 'Success'){
+                    bcolor = 'green';
+                }
+                else{
+                   bcolor = 'red';
+                }
                 return(
                     <>
-                    <p style={{color : 'black'}}> {value}</p>
+                    <p style={{color : 'white', backgroundColor : `${bcolor}`, maxWidth : '9vw',padding : '2px'}}> {value}</p>
                     </>
                 )
             })
         }
-        
-        
     </>
   )
 }

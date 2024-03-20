@@ -1,0 +1,15 @@
+.questionSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgb(253, 202, 220);
+    padding: 5rem;
+}
+
+.QuestionListContainer{
+    min-width: 60vw;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}

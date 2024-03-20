@@ -58,7 +58,7 @@ export default function Login() {
           width="80" />
         <div className="userdiv mb-4">
           <label className="label">
-            <input className="box-border mt-2 logininput" 
+            <input className="mt-2 logininput" 
             onChange={(e)=>setUserName(e.target.value)} 
             type="text" 
             placeholder=" Enter username" 
@@ -68,7 +68,7 @@ export default function Login() {
           </div>
           <div className="passdiv mb-4">
           <label className="label">
-            <input className="box-border mt-2 logininput" 
+            <input className="mt-2 logininput" 
             onChange={(e)=>setPassword(e.target.value)} 
             type="password" 
             placeholder=" Enter your password" 
@@ -79,12 +79,13 @@ export default function Login() {
               <p className="loginErrorMessage">{errorMessage}</p>
             ) : null}
           </div>
-          <div className="loginButton mb-2">
+          <div className="loginButton">
           <input className="login-button" type="submit" value="Login" />
         </div>
         <div className="loginRouteContainer input">
-            <p className="loginINstruction">New User?</p>
-              <Link to="/register" className="login-btnroute">Register</Link>
+            <p style={{color: 'black'}} className="loginINstruction">New User? <Link to="/register" className="login-btnroute">Register</Link>
+            </p>
+              
             </div>
         </div>
       </form>

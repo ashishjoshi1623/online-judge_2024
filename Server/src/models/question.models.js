@@ -21,7 +21,12 @@ const questionSchema = new Schema({
             type : String,
             required : true
         }
-    ]
+    ],
+    difficulty : {
+        type : String,
+        required : true,
+        enum : ["easy", "medium", "hard"]
+    }
 },{timestamps: true})
 
 export const Question = mongoose.model("Question",questionSchema);

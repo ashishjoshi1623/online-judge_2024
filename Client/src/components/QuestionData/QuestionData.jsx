@@ -10,7 +10,11 @@ function QuestionData(props) {
     <>
         {
             props.data.map( (curr) => {
-                const {id,title} = curr;
+                const {id,title,difficulty} = curr;
+                let diffClass;
+                if(difficulty === 'easy') diffClass = 'green';
+                else if(difficulty ==='medium') diffClass = 'orange';
+                else if(difficulty === 'hard') diffClass ='red';
                 function getDescription(){
                     navigate('/questions/description', {state : {title : title, user : props.user, userId : props.userId}})
                 }
@@ -18,7 +22,10 @@ function QuestionData(props) {
 
                 return(
                     <>
-                    <li className='quesNameListItem' key={id} onClick={getDescription} >{title}</li>
+                        <div className="quesListItem">
+                            <p className='quesTitle' onClick={getDescription}>{title}</p> <p className='quesDiff' style={{color : `${diffClass}`}}>{difficulty}</p>
+                        </div>
+                        <hr />
                     </>
                 )
             })

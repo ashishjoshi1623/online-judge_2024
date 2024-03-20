@@ -5,16 +5,9 @@
     align-items: center;
     justify-content: center;
 }
-
-.app-logoo{
-    border: 1px solid rgba(238, 158, 11, 0.154);
-    border-radius: 5px;
-}
-
 .register-container{
-    /* background-color: #19083fa7; */
-    background-image: radial-gradient(rgb(47, 15, 90),rgb(0, 0, 0));
-    border: 1px solid rgba(207, 130, 7, 0.222);
+    background-color: #ffffffaf;
+    border: 3px solid rgba(0, 238, 250, 0.222);
     border-radius: 10px;
     height: 70vh;
     width: 30vw;
@@ -24,13 +17,19 @@
     justify-content: space-between;
     padding: 10%;
 }
+.register-container img{
+    box-shadow: 0 5px 10px 0 rgba(19, 3, 167, 0.201), 0 6px 10px 0 rgba(0,0,0,0.19);
+    margin-bottom: 1rem;
+}
 
 input{
-    border: 1px solid white;
+    border: 2px solid #c17eff;
+    height: 2rem;
     width: 100%;
     border-radius: 10px;
     padding: 6px;
     color: #000000;
+    font-size: medium;
 }
 
 input:focus {
@@ -38,14 +37,13 @@ input:focus {
 }
 
 .Register-btn{
-    border: 1px solid #e9980c75;
+    border: 1px solid #0cb9e9;
     border-radius: 10px;
-    /* background-color: #12023700; */
     padding-top: 5px;
     padding-bottom: 5px;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    background-color: #00000085;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: #10076f;;
     color:#10dde4;
 }
 
@@ -57,14 +55,6 @@ input:focus {
 
 .login-btnroute{
     color:#10dde4;
-    text-decoration: none;
-    border: 1px solid #f5a00d8b;
-    padding-top: 3px;
-    padding-bottom: 5px;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    border-radius: 10px;
-    background-color: #00000085;
 }
 
 .form-error{
@@ -77,38 +67,18 @@ input:focus {
 
 @media screen and (max-width: 1000px) {
     .register-container{
-        background-color: #19083fa7;
-        border: 1px solid rgba(207, 130, 7, 0.222);
-        border-radius: 10px;
-        height: 40vh;
         width: 70vw;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10%;
+        height: 65vh;
+        font-size: x-large;
     }
-    
     input{
-        border: 2px solid white;
-        width: 20rem;
-        height: 3.5rem;
-        border-radius: 10px;
-        padding: 6px;
-        color: black;
+        width: 30vw;
+        height: 3rem;
     }
-    
+
     .Register-btn{
-        margin-top: 1rem;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        padding-left: 2rem;
-        padding-right: 2rem;
         width: 10rem;
-        height: 5rem;
-        border: 1px solid #e9980c75;
-        border-radius: 10px;
-        background-color: #00000085;
-        color:#10dde4;
+        height: 3rem;
+        font-size: x-large;
     }
 }

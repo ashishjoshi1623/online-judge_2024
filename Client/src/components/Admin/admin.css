@@ -1,11 +1,5 @@
-.body{
-    /* background-image: url(../../../public/bgImg/admin-bgImg1.jpg); */
-    background-image: radial-gradient(rgb(241, 195, 237), rgb(44, 21, 42));
-    /* background-color: radial-gradient(rgb(241, 195, 237), rgb(44, 21, 42)); */
-}
-
 .admin-nav-section{
-    background-color: rgba(255, 255, 255, 0.566);
+    background-color: rgba(57, 57, 57, 0.894);
     height: 15vh;
     display: flex;
     align-items: center;
@@ -21,15 +15,52 @@
 
 .admin-nav-heading{
     font-family: 'PT Serif', serif;
-    font-weight: 700;
+    font-size: xx-large;
+    font-weight: 400;
     font-style: italic;
-    color: #4a474e;
+    color: #fdfdfd;
 }
 
-.welcome-text{
-    width: 25vw;
-    margin-left: 40vw;
+.admin-login{
+    height : 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.adminContainer{
+    width: 50vw;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem;
+    background-color: rgb(174, 174, 174);
+}
+.admin-login h1{
+    font-family: 'PT Serif', serif;
+    font-size: x-large;
+    font-weight: 400;
+    font-style: italic;
+    color: #000000;
+}
+
+.admin-formContainer{
+    max-height : 20vh;
+    max-width : 20vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 2rem;
+    /* justify-content: center; */
+}
+
+.admin-input {
+    border: 1px solid black;
+    width: 16vw;
+    margin-bottom: 1rem;
 }
 
 .admin-navLink{
@@ -43,74 +74,126 @@
     margin: 1rem;
 }
 
-.admin-container{
-    background-color: rgba(255, 255, 255, 0.519);
-    border: 1px solid rgba(255, 192, 203, 0.678);
-    height: 100%;
-    width: 60vw;
-    margin-left: 20vw;
-    padding-top: 5vh;
-}
+/* Admin crud operation css */
 
-.addValue-container{
-    
-    border-radius: 20px;
+.addQuestion{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 5rem;
-    /* height: 70vh; */
+}
+
+.admin-container{
+    height: 100%;
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    background-color: #78777983;
+}
+
+.admin-container h1{
+    font-family: 'PT Serif', serif;
+    font-size: xx-large;
+    font-weight: 400;
+    font-style: italic;
+    color: #000000;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 120vh;
+    min-height: 80vh;
 }
 
 .question-title{
-    width: 40vw;
+    width: 30vw;
+    height: 3rem;
     margin-bottom: 1rem;
+    border: 1px solid rgb(146, 143, 143);
 }
+.textArea{
+    width: 30vw;
+    height: 20rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgb(146, 143, 143);
+}
+.textArea:focus{
+    outline: none;
+}
+
+.selectDifi{
+    height: 2rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+.selectDifi:focus{
+    outline: none;
+}
+
 .admin-submit-btn{
-    width: 20vw;
+    border: 1px solid rgb(146, 143, 143);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    padding: 3px 3px;
+    width: 7vw;
+    margin-bottom: 1rem;
+    font-size: large;
 }
 
 .textcolor-pink{
-    color: rgb(158, 16, 39);
+    color: rgb(9, 201, 235);
     font-size : 20px ;
     font-weight: 700;
 }
 
 .textcolor-grey{
-    color: rgb(56, 48, 48);
+    color: rgb(255, 255, 255);
 }
 
-/* adminLogin css written below */
 
-.admin-login{
-    height : 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2rem;
-}
-
-.admin-formContainer{
-    height : 50vh;
-    width : 40vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2rem;
-    /* justify-content: center; */
-}
-
-.admin-input {
-    width: 16vw;
-    margin-bottom: 1rem;
-}
-
-.questionSection{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: rgb(253, 202, 220);
+@media screen and (max-width:1200px) {
+    .admin-container h1{
+        font-size: xxx-large;
+    }
+    .admin-input {
+        border: 1px solid black;
+        border-radius: 15px;
+        width: 50vw;
+        height: 6rem;
+        margin-bottom: 4rem;
+        font-size: xx-large;
+    }
+    .admin-container{
+        width: 100vw;
+    }
+    .form-container{
+        padding: 2rem;
+        width: 100vw;
+        justify-content: space-around;
+    }
+    .question-title{
+        width: 80vw;
+        height: 5rem;
+    }
+    .textArea{
+        width: 80vw;
+        height: 30rem;
+    }
+    .selectDifi{
+        width: 20vw;
+        height: 5rem;
+    }
+    .admin-submit-btn{
+        width: 20vw;
+        height: 5rem;
+        margin-bottom: 1rem;
+        font-size: x-large;
+    }
 }

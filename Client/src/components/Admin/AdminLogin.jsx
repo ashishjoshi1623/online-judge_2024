@@ -47,11 +47,13 @@ function AdminLogin() {
           </div>
         </div>
       </section>
-    <h1 className='admin-nav-heading welcome-text'>Welcome Admin!</h1>
+    
 
 
         <section className="admin-login">
-        <h1 className='admin-nav-heading'>Login</h1>
+          <div className="adminContainer">
+        <h1 className=''>Welcome Admin!</h1>
+        <h1 className=''>you can now login below</h1>
             <form onSubmit={submitAdmin}>
                 <div className="admin-formContainer">
                     <label>
@@ -76,7 +78,7 @@ function AdminLogin() {
                     <input type="submit" className="admin-login-btn admin-input" value="Login"/>
                 </div>
             </form>
-            
+            </div>
         </section>
         </div>
     </>

@@ -5,4 +5,5 @@ export const addQuestionSchema = Yup.object({
     problemStatement : Yup.string().required("this is a required field"),
     testCases : Yup.string().required("this is a required field"),
     output : Yup.string().required("this is a required field"),
+    difficulty : Yup.string().required("this is a required field"),
 })

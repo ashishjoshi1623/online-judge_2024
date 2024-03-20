@@ -7,6 +7,7 @@ import { useFormik } from 'formik';
 import { addQuestionSchema } from '../../validation/QuestionSchema.jsx';
 import axios from 'axios';
 import QuestionData from '../QuestionData/QuestionData.jsx';
+import QuestionList from './questionList.jsx';
 
 export default function Admin() {
 
@@ -21,6 +22,7 @@ export default function Admin() {
     problemStatement : "",
     testCases : [],
     output : [],
+    difficulty : "",
   } 
 
   const [questionData,setQuestionData] = useState([]);
@@ -73,20 +75,20 @@ export default function Admin() {
         </div>
         <div className="nav-link">
         <Nav className="me-auto">
-        <NavLink to="/" className={({isActive})=> `admin-navLink ${isActive ?  "textcolor-pink" :"textcolor-grey"} `}>TrashCodes</NavLink>
-          <NavLink to="/adminlogin" className={({isActive})=> `admin-navLink ${isActive ?  "textcolor-pink" :"textcolor-grey"} `}>Logout</NavLink>
+        <NavLink to="/" className="admin-navLink textcolor-pink">TrashCodes</NavLink>
+          <NavLink to="/adminlogin" className="admin-navLink textcolor-pink">Logout</NavLink>
           </Nav>
           </div>
         </div>
       </section>
-    <h1 className='admin-nav-heading welcome-text'>Welcome Admin!</h1>
+    
 
     <section className="addQuestion">
       <div className="admin-container">
-        
-
-        <div className="form-container">
+        <h1 style={{color : 'black'}} className=''>Welcome Admin!</h1>
+        <h1 style={{color : 'black'}} className=''>Add Problems Below</h1>
             <form onSubmit={handleSubmit} className='addValue-container'>
+            <div className="form-container">
               <label>
                 <input type="text" 
                 className="question-title input"
@@ -142,22 +144,31 @@ export default function Admin() {
               {errors.output && touched.output ? (
                         <p className="form-error">{errors.output}</p>
                       ) : null}
+              <label>
+                <select className='selectDifi' name="difficulty" id="diff" onChange={handleChange} onBlur={handleBlur} value={values.difficulty}>
+                  <option value="">Select Difficulty</option>
+                  <option value="easy">Easy</option>
+                  <option value="medium">Medium</option>
+                  <option value="hard">Hard</option>
+                </select>
+              </label>
+              {errors.difficulty && touched.difficulty ? (
+                        <p className="form-error">{errors.difficulty}</p>
+                      ) : null}
 
               <label>
                 <input className='admin-submit-btn' type="submit" value="Add"/>
               </label>
+              </div>
             </form>
-        </div>
         
       </div>
       
     </section>
 
     <section className="questionSection">
-        <h1 className="admin-nav-heading"> All Questions </h1>
-      <ul className="QuestionList">
-      <QuestionData data = {questionData} />
-      </ul>
+        <h1 style={{color:'black'}} className=""> All Questions </h1>
+        <QuestionList data={questionData}/>
     </section>
     </div>
   )

@@ -141,7 +141,7 @@ app.post("/api/adminlogin" ,cors(), async (req,res) => {
 // Add question in QuestionSchema
 app.post("/api/question",cors(), async (req,res)=>{
     // console.log(req.body);
-    const {title, problemStatement, testCases, output} = req.body;
+    const {title, problemStatement, testCases, output, difficulty} = req.body;
 
     const isExist = await Question.findOne({title})
 
@@ -156,6 +156,7 @@ app.post("/api/question",cors(), async (req,res)=>{
         problemStatement,
         testCases : [testCases],
         output : [output],
+        difficulty
     })
 
     const isCreated = await Question.findById((await newEntry)._id);
@@ -180,10 +181,6 @@ app.post("/api/allquestions",cors(),async (req,res) => {
     } catch (error) {
         throw new ApiError(500,"Something went wrong");
     }
-    
-    // const questionObj = Object.assign({},question);
-    
-    // console.log(question[1]);
 })
 
 //get question Description
@@ -202,13 +199,10 @@ app.get("/api/description/:title",cors(),async (req,res)=>{
 })
 
 //compiler functioning route
-app.post("/api/run", cors(), async(req,res) => {
-    const { language = 'cpp' , code, title, user, userId, questionId, customInput } = req.body;
-    // console.log(customInput);
+app.post("/api/submit", cors(), async(req,res) => {
+    const { language = 'cpp' , code, title, user, userId, questionId} = req.body;
     let testCases = [];
     let finalOutput = [];
-
-   
 
     if(code === undefined){
         return res.status(404).json({ success: false, error: "Empty code!" });
@@ -218,31 +212,20 @@ app.post("/api/run", cors(), async(req,res) => {
         const test = await Question.find({title}).select("testCases output");
         testCases = test[0].testCases; //[ '2 5' ]
         finalOutput = test[0].output; //[ '7' ]
-
-        // console.log(testCases , finalOutput); //[ '2 5' ] [ '7' ]
-
     } catch (error) {
         throw new ApiError(500,"Something went wrong with DataBase");
     }
-
-    if(customInput) {
-        testCases.push(customInput);
-    }
-
-    
         try {
         const filePath = await generateFile(language, code)
         //D:\AlgoUniversity\online-judge\Server\src\utils\codes\1f7c24ba-74d5-47e5-a0c7-ed41687c2d80.cpp
 
         let output = "";
         let message = [];
-        let outputArray = [];
 
         //for cpp code
         if(language === 'cpp'){
             for(var i = 0; i<testCases.length; i++){
                 output = await executeCpp(filePath,testCases[i]);
-                outputArray.push(output);
 
                 // If User's answer is correct
                 if(output === finalOutput[i]){
@@ -251,13 +234,10 @@ app.post("/api/run", cors(), async(req,res) => {
 
                     //check if Submission exist
                     const isSubmissionPresent = await Submission.findOne({user : userId, question : questionId});
-                    // console.log(isSubmissionPresent);
                     
                     //if submission present then update
                     if(isSubmissionPresent){
                         const update = await isSubmissionPresent.updateOne({lastSubmission : `${code}`});
-                        // console.log(update);
-                        
                     }
                     else{
                         const newSubmission = await Submission.create(
@@ -275,14 +255,13 @@ app.post("/api/run", cors(), async(req,res) => {
                     message.push(`Testcase ${i+1} Failed`);
                 }
             }
-            return res.json({output : outputArray,message : message, testCases : testCases, expectedOutput : finalOutput});
+            return res.json({message : message});
         }
 
         //for java code
         else if(language === 'java'){
             for(var i = 0; i<testCases.length; i++){
                 output = await executeJava(filePath,testCases[i]);
-                outputArray.push(output);
                 if(output === finalOutput[i]){
                     message.push(`Testcase ${i+1} Success`);
 
@@ -293,8 +272,6 @@ app.post("/api/run", cors(), async(req,res) => {
                     //if submission present then update
                     if(isSubmissionPresent){
                         const update = await isSubmissionPresent.updateOne({lastSubmission : `${code}`});
-                        // console.log(update);
-                        
                     }
                     else{
                         const newSubmission = await Submission.create(
@@ -304,7 +281,6 @@ app.post("/api/run", cors(), async(req,res) => {
                                 question : questionId
                             }
                         )
-                        // console.log(newSubmission);
                     }
                 }
                 else{
@@ -312,26 +288,23 @@ app.post("/api/run", cors(), async(req,res) => {
                 }   
             }    
             
-            return res.json({output : outputArray,message : message, testCases : testCases, expectedOutput : finalOutput});
+            return res.json({message : message});
         }
 
         //for Python code
         else{
             for(var i = 0; i<testCases.length; i++){
                 output = await executePy(filePath,testCases[i]);
-                outputArray.push(output);
                 // If User's answer is correct
                 if(output === finalOutput[i]){
                     message.push(`Testcase ${i+1} Success`);
+
                     //check if Submission exist
                     const isSubmissionPresent = await Submission.findOne({user : userId, question : questionId});
-                    // console.log(isSubmissionPresent);
-                    
+
                     //if submission present then update
                     if(isSubmissionPresent){
                         const update = await isSubmissionPresent.updateOne({lastSubmission : `${code}`});
-                        // console.log(update);
-                        
                     }
                     else{
                         const newSubmission = await Submission.create(
@@ -341,14 +314,13 @@ app.post("/api/run", cors(), async(req,res) => {
                                 question : questionId
                             }
                         )
-                        // console.log(newSubmission);
                     }
                 }
                 else{
                     message.push(`Testcase ${i+1} Failed`);
                 }
             }
-            return res.json({output : outputArray ,message : message, testCases : testCases, expectedOutput : finalOutput});
+            return res.json({message : message});
         }
 
         
@@ -357,6 +329,46 @@ app.post("/api/run", cors(), async(req,res) => {
     }
 
     
+})
+
+app.post("/api/run", cors(), async(req,res) => {
+    const { language = 'cpp' , code, customInput } = req.body;
+    // console.log(customInput);
+
+    if(code === undefined){
+        return res.status(404).json({ success: false, error: "Empty code!" });
+    }
+    
+        try {
+        const filePath = await generateFile(language, code)
+        //D:\AlgoUniversity\online-judge\Server\src\utils\codes\1f7c24ba-74d5-47e5-a0c7-ed41687c2d80.cpp
+
+        let output = "";
+        let outputArray = [];
+
+        //for cpp code
+        if(language === 'cpp'){
+            
+            output = await executeCpp(filePath,customInput);
+            return res.json({output : output});
+        }
+
+        //for java code
+        else if(language === 'java'){
+            output = await executeJava(filePath,customInput);
+            return res.json({output : output});
+        }
+
+        //for Python code
+        else{
+    
+            output = await executePy(filePath,customInput);
+            return res.json({output : output});
+        }
+    
+    } catch (error) {
+        return res.status(500).json({ error: error });
+    }
 })
 
 // send submissions as response if present

@@ -131,8 +131,9 @@ export default function Register() {
               <input className="Register-btn" type="submit" value="Register" />
             </div>
             <div className="loginRouteContainer input">
-            <p className="loginINstruction">Already have an account?</p>
-              <Link to="/login" className="login-btnroute">Login</Link>
+            <p style={{color : 'black'}} className="loginINstruction">
+              Already have an account? <Link to="/login" className="login-btnroute">Login</Link>
+            </p>
             </div>
           </div>
         </form>
