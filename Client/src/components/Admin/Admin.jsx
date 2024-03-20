@@ -35,9 +35,10 @@ export default function Admin() {
       try {
         const questionResponse = await axios.post(`${import.meta.env.VITE_API_PORT}/api/question`, values);
 
-        console.log(questionResponse);
+        alert("Submission Successfull");
 
       } catch (error) {
+        alert("Error: " + error);        
         console.log(error);
       }
       action.resetForm();
@@ -52,7 +53,7 @@ export default function Admin() {
       if(data.length > 0){
         setQuestionData(data);
       }
-      console.log(data);
+      // console.log(data);
       
     } catch (error) {
       console.log(error);
@@ -97,6 +98,7 @@ export default function Admin() {
                 onChange={handleChange}  
                 onBlur={handleBlur}
                 value={values.title}
+                required
                 />
               </label>
               {errors.title && touched.title ? (
@@ -113,12 +115,14 @@ export default function Admin() {
                 onChange={handleChange}  
                 onBlur={handleBlur}
                 value={values.problemStatement}
+                required
                 ></textarea>
               </label>
               {errors.problemStatement && touched.problemStatement ? (
                         <p className="form-error">{errors.problemStatement}</p>
                       ) : null}
               <label>
+              <p style={{color:'grey'}}>(For more than one testcase use ',' without extra space)</p>
                 <input name="testCases" 
                 type='text'
                 className='question-title input'
@@ -126,12 +130,14 @@ export default function Admin() {
                 onChange={handleChange}  
                 onBlur={handleBlur}
                 value={values.testCases}
+                required
                 />
               </label>
               {errors.testCases && touched.testCases ? (
                         <p className="form-error">{errors.testCases}</p>
                       ) : null}
               <label>
+              <p style={{color:'grey'}}>(For more than one output use ',' without extra space)</p>
                 <input type='text'
                 name="output" 
                 className='question-title input'
@@ -139,13 +145,14 @@ export default function Admin() {
                 onChange={handleChange}  
                 onBlur={handleBlur}
                 value={values.output}
+                required
                 />
               </label>
               {errors.output && touched.output ? (
                         <p className="form-error">{errors.output}</p>
                       ) : null}
               <label>
-                <select className='selectDifi' name="difficulty" id="diff" onChange={handleChange} onBlur={handleBlur} value={values.difficulty}>
+                <select className='selectDifi' name="difficulty" id="diff" onChange={handleChange} onBlur={handleBlur} value={values.difficulty} required>
                   <option value="">Select Difficulty</option>
                   <option value="easy">Easy</option>
                   <option value="medium">Medium</option>
@@ -168,7 +175,7 @@ export default function Admin() {
 
     <section className="questionSection">
         <h1 style={{color:'black'}} className=""> All Questions </h1>
-        <QuestionList data={questionData}/>
+        <QuestionList data={questionData} user={loggedIn}/>
     </section>
     </div>
   )

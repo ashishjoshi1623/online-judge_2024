@@ -140,11 +140,12 @@
 .admin-submit-btn{
     border: 1px solid rgb(146, 143, 143);
     border-radius: 10px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(69, 69, 69);
     padding: 3px 3px;
     width: 7vw;
     margin-bottom: 1rem;
     font-size: large;
+    color: #d4d4d4;
 }
 
 .textcolor-pink{

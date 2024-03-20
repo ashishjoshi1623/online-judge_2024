@@ -16,6 +16,7 @@ import Admin from './components/Admin/Admin.jsx';
 import AdminLogin from './components/Admin/AdminLogin.jsx';
 import Questions from './components/ProblemStatements/Questions.jsx';
 import SolveProblem from './components/ProblemStatements/SolveProblem.jsx';
+import EditProblems from './components/Admin/EditProblems.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
       <Route path='/adminlogin/admin' element={<Admin />}/>
       <Route path='/questions' element={<Questions />}/>
       <Route path='/questions/description' element={<SolveProblem />}/>
+      <Route path='/adminlogin/admin/editProblems' element={<EditProblems />}/>
     </Route>
   )
 )

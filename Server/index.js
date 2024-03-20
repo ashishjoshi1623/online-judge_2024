@@ -143,6 +143,9 @@ app.post("/api/question",cors(), async (req,res)=>{
     // console.log(req.body);
     const {title, problemStatement, testCases, output, difficulty} = req.body;
 
+    let outputArray = output.split(',');
+    let testCasesArray = testCases.split(',');
+
     const isExist = await Question.findOne({title})
 
     if(isExist){
@@ -154,8 +157,8 @@ app.post("/api/question",cors(), async (req,res)=>{
     const newEntry = Question.create({
         title,
         problemStatement,
-        testCases : [testCases],
-        output : [output],
+        testCases : testCasesArray,
+        output : outputArray,
         difficulty
     })
 
@@ -331,6 +334,7 @@ app.post("/api/submit", cors(), async(req,res) => {
     
 })
 
+//custom I/O 
 app.post("/api/run", cors(), async(req,res) => {
     const { language = 'cpp' , code, customInput } = req.body;
     // console.log(customInput);
@@ -401,6 +405,57 @@ app.post("/api/contactquery", cors(), async(req,res) => {
     }
     
 
+})
+
+// changing content of questions
+app.put("/api/editquestions", cors(), async(req,res) => {
+    const { title, difficulty, problemStatement, output, testCases } = req.body;
+    let outputArray = output.split(',');
+    let testCasesArray = testCases.split(',');
+
+    try {
+        const findQuestion = await Question.findOneAndUpdate(
+            { title: title },
+            {
+                title: title,
+                difficulty: difficulty,
+                problemStatement: problemStatement,
+                output: outputArray,
+                testCases: testCasesArray
+            }
+        );
+
+        if (!findQuestion) {
+            throw new ApiError(500, "Something went wrong");
+        }
+
+        console.log(findQuestion);
+        res.status(200).json({ message: "successfully updated data" });
+    } catch (error) {
+        // Handle errors here
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+})
+
+//delete question from database
+
+app.delete("/api/deletequestion", cors(), async(req,res) => {
+    const { title, _id } = req.query;
+    try {
+        const findQuestion = await Question.findOneAndDelete({ title: title });
+
+        if (!findQuestion) {
+            throw new ApiError(500, "Something went wrong");
+        }
+
+        console.log(findQuestion);
+        res.status(200).json({ message: "successfully deleted data" });
+    } catch (error) {
+        // Handle errors here
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
 })
 
 //app listening on port :

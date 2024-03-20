@@ -1,0 +1,84 @@
+.editSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.editContainer{
+    width: 80vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: #78777983;
+}
+.editContainer h1{
+    font-family: 'PT Serif', serif;
+    font-size: xx-large;
+    font-weight: 400;
+    font-style: italic;
+    color: #000000;
+}
+
+.editFormContainer{
+    width: 60vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1rem;
+}
+
+.editFormContainer p{
+    font-size: medium;
+    font-family: 'PT Serif', serif;
+    color: #000000;
+}
+
+.editInput{
+    border: 1px solid rgb(170, 170, 170);
+    width: 45vw;
+    height: 3rem;
+    margin-bottom: 1rem;
+}
+
+.editTextarea{
+    width: 45vw;
+    height: 50vh;
+}
+
+.editInput:focus{
+    outline: none;
+}
+.editTextarea:focus{
+    outline: none;
+}
+
+.editSubmitBtn{
+    border: 1px solid rgb(146, 143, 143);
+    border-radius: 10px;
+    background-color: rgb(69, 69, 69);
+    padding: 3px 3px;
+    width: 7vw;
+    margin-bottom: 1rem;
+    font-size: large;
+    color: rgb(213, 213, 213);
+}
+
+.chooseDiff{
+    border: 1px solid rgb(120, 117, 117);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    padding: 3px 3px;
+    width: 7vw;
+    margin-bottom: 1rem;
+    font-size: large;
+    color: rgb(45, 43, 43);
+}
+
+.chooseDiff:focus{
+    outline: none;
+}
