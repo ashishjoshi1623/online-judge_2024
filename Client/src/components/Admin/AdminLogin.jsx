@@ -3,17 +3,20 @@ import "./admin.css"
 import Nav from 'react-bootstrap/Nav';
 import { NavLink, useNavigate } from "react-router-dom"
 import axios from 'axios';
+import Loader from '../Loader/Loader';
 
 function AdminLogin() {
     const [username,setUserame] = useState('');
     const [password,setPassword] = useState('');
     const [errorMessage,setErrorMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     // console.log(username, password);
 
     const navigate = useNavigate();
 
     async function submitAdmin(e){
       e.preventDefault(); //prevent page from default behaviour of reloding
+      setIsLoading(true);
       try {
         const adminResponse = await axios.post(`${import.meta.env.VITE_API_PORT}/api/adminlogin` , {
           username : username,
@@ -28,11 +31,14 @@ function AdminLogin() {
       } catch (error) {
         console.log("ERROR :" + error);
         setErrorMessage(error.response.data.message);
+      } finally {
+        setIsLoading(false);
       }
   }
 
   return (
     <>
+    {isLoading && <Loader isLoading={isLoading} />}
     <div className="body">
 
     <section className="admin-nav-section">
@@ -75,7 +81,7 @@ function AdminLogin() {
                         />
                     </label>
                     {errorMessage ? (<p className="loginErrorMessage">{errorMessage}</p>) : null}
-                    <input type="submit" className="admin-login-btn admin-input" value="Login"/>
+                    <input type="submit" className="admin-submit-btn admin-input" value="Login"/>
                 </div>
             </form>
             </div>

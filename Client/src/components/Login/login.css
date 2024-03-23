@@ -17,6 +17,11 @@
     background-color: #10076f;
     color:#10dde4;
 }
+.login-button:hover{
+    border: 2px solid #0cb9e9c7;
+    border-radius: 10px;
+    background-color: #10076fe5;
+}
 
 .login{
     background-color: #ffffffaf;

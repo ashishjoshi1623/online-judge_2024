@@ -12,6 +12,7 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
 import Output from './Output.jsx';
 import Submission from './Submission.jsx';
+import Loader from '../Loader/Loader.jsx';
 
 function SolveProblem() {
     const location = useLocation();
@@ -25,6 +26,7 @@ function SolveProblem() {
     const [expOutput,setExpOutput] = useState([]); //expected output
     const [successMessage,setSuccessMessage] = useState([]);
     const [customInput,setCustomInput] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const [code, setCode] = React.useState(
       `#include <iostream>
       using namespace std;
@@ -43,7 +45,7 @@ function SolveProblem() {
     const [show, setShow] = useState(true);
 
     async function handleSubmit(){
-      // console.log("Clicked");
+      setIsLoading(true);
       try {
         const response = await axios.post(`${import.meta.env.VITE_API_PORT}/api/submit`,{
           language : language,
@@ -53,19 +55,17 @@ function SolveProblem() {
           userId : userId,
           questionId : questionData[0]._id
         })
-        
-        // setOutput(response.data.output);
-        // setTestCases(response.data.testCases);
-        // setExpOutput(response.data.expectedOutput);
         setSuccessMessage(response.data.message);
         setOutput('');
-        // console.log(output,testCases,expOutput,successMessage);
       } catch (error) {
         setOutput("Syntax Error")
+      } finally {
+        setIsLoading(false);
       }
       
     }
     async function handleRun(){
+      setIsLoading(true);
       try {
         const response = await axios.post(`${import.meta.env.VITE_API_PORT}/api/run`,{
           language : language,
@@ -83,6 +83,8 @@ function SolveProblem() {
         console.log(output);
       } catch (error) {
         setOutput("Syntax Error")
+      } finally {
+        setIsLoading(false);
       }
       
     }
@@ -90,15 +92,14 @@ function SolveProblem() {
     
 
     async function getQuestionDesc(){
-    
-        const response = await axios.get(`${import.meta.env.VITE_API_PORT}/api/description/${title}`);
-        const responseData = await JSON.parse(response.data);
+      setIsLoading(true);
+      const response = await axios.get(`${import.meta.env.VITE_API_PORT}/api/description/${title}`);
+      setIsLoading(false);
+      const responseData = await JSON.parse(response.data);
             
-        if(responseData.length > 0){
-            setQuestionData(responseData);
-        }
-        // console.log(questionData[0]); //'65cb0b1fac1ef2dbf291e3a6'
-       
+      if(responseData.length > 0){
+          setQuestionData(responseData);
+      }
     }
 
     useEffect(() => {
@@ -109,6 +110,7 @@ function SolveProblem() {
   return (
     <>
         <Header page="problems" user={user}/>
+        {isLoading && <Loader isLoading={isLoading} />}
         <section className='solve'>
 
             <div className='leftDesc'>

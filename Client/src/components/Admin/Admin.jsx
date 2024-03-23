@@ -6,15 +6,15 @@ import { useLocation } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { addQuestionSchema } from '../../validation/QuestionSchema.jsx';
 import axios from 'axios';
-import QuestionData from '../QuestionData/QuestionData.jsx';
 import QuestionList from './questionList.jsx';
+import Loader from '../Loader/Loader.jsx';
 
 export default function Admin() {
 
   const location = useLocation();
   const data = location.state;
   const loggedIn = data ? data.data.statusCode : null;
-  console.log(loggedIn);
+  const [isLoading, setIsLoading] = useState(false);
 
   //object to collect initial values
   const newQuestionData = {
@@ -32,6 +32,7 @@ export default function Admin() {
     validationSchema : addQuestionSchema,
 
     onSubmit : async (values, action) => {
+      setIsLoading(true);
       try {
         const questionResponse = await axios.post(`${import.meta.env.VITE_API_PORT}/api/question`, values);
 
@@ -40,13 +41,17 @@ export default function Admin() {
       } catch (error) {
         alert("Error: " + error);        
         console.log(error);
+      } finally {
+        setIsLoading(false);
+        action.resetForm();
+        window.location.reload();
       }
-      action.resetForm();
     }
   })
     
   // }
   async function fetchQuestionData(){
+    setIsLoading(true);
     try {
       const Questions = await axios.post(`${import.meta.env.VITE_API_PORT}/api/allquestions`);
       const data = JSON.parse(Questions.data);
@@ -57,6 +62,8 @@ export default function Admin() {
       
     } catch (error) {
       console.log(error);
+    } finally{
+      setIsLoading(false);
     }
   }
 
@@ -82,6 +89,7 @@ export default function Admin() {
           </div>
         </div>
       </section>
+      {isLoading && <Loader isLoading={isLoading} />}
     
 
     <section className="addQuestion">

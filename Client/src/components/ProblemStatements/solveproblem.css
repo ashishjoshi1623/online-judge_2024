@@ -39,6 +39,10 @@
     border: 1px solid #585151;
     border-radius: 5px;
 }
+.showBtn:hover{
+    color: rgba(0, 200, 245, 0.872);
+    background-color: #3b3b3b;
+}
 
 .langOption{
     padding: 5px;
@@ -47,6 +51,11 @@
     margin-top: 1rem;
     border: 1px solid;
     border-radius: 5px;
+}
+
+.langOption:hover{
+    background-color: #474646;
+    color: rgb(255, 255, 255);
 }
 
 .codeSubmitBtn{
@@ -58,6 +67,11 @@
     border-radius: 5px;
 }
 
+.codeSubmitBtn:hover{
+    color: rgb(43, 248, 2);
+    background-color: #424040;
+}
+
 .codeRunBtn{
     padding: 5px;
     color: rgb(243, 241, 241);
@@ -65,6 +79,10 @@
     margin-top: 1rem;
     border: 1px solid #585151;
     border-radius: 5px;
+}
+.codeRunBtn:hover{
+    background-color: #474646;
+    color: rgb(255, 255, 255);
 }
 
 .outputDiv{

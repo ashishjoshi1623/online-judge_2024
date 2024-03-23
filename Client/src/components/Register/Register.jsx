@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import { validateSchema } from "../../validation/index.jsx";
 import Footer from "../Footer/Footer.jsx";
 import Header from "../Header/Header.jsx";
+import Loader from "../Loader/Loader.jsx";
 
 export default function Register() {
 
@@ -19,6 +20,7 @@ export default function Register() {
 
   let statusCode = 0;
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik (
     {
@@ -27,6 +29,7 @@ export default function Register() {
       validationSchema: validateSchema,
 
       onSubmit: async (values, action) => {
+        setIsLoading(true);
         try {
            const registerResponse = await axios.post(`${import.meta.env.VITE_API_PORT}/api/register`,{
             values
@@ -40,8 +43,10 @@ export default function Register() {
           statusCode = error.response.data.statusCode;
           alert(error.response.data.message);
 
+        } finally {
+          setIsLoading(false);
         }
-        console.log(statusCode);
+        // console.log(statusCode);
 
         if(statusCode === 200 || statusCode === 201 || statusCode === 409){
           alert("You can now login with your credentials")
@@ -55,6 +60,7 @@ export default function Register() {
      return (
       <>
       <Header page="register" user="User"/>
+      {isLoading && <Loader isLoading={isLoading} />}
       <section className="register-section">
         <form onSubmit={ handleSubmit } >
           <div className="register-container">

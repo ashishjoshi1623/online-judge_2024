@@ -4,6 +4,7 @@ import axios from 'axios';
 import './editProblems.css';
 import Nav from 'react-bootstrap/Nav';
 import { NavLink } from "react-router-dom"
+import Loader from '../Loader/Loader';
 
 function EditProblems() {
     // retrieve data for which we need to edit the problem
@@ -15,10 +16,12 @@ function EditProblems() {
     const [output,setOutput] = useState([]);
     const [testCases,setTestCases] = useState([]);
     const [title,setTitle] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
 
     async function handleEdit(e){
         e.preventDefault();
+        setIsLoading(true);
         try {
             const response = await axios.put(`${import.meta.env.VITE_API_PORT}/api/editquestions`, {
                 title: title,
@@ -26,17 +29,20 @@ function EditProblems() {
                 problemStatement: problemStatement,
                 output: output,
                 testCases: testCases
-            })
+            });
             alert("Data submitted Successfully");
-            console.log(response);
+            // console.log(response);
         } catch (error) {
             console.log(error);
+        } finally{
+            setIsLoading(false);
         }
         
     }
 
     //function to get the present data
     async function getPresentData(){
+        setIsLoading(true);
         try {
             const response = await axios.get(`${import.meta.env.VITE_API_PORT}/api/description/${data.title}`)
             const responseData = await JSON.parse(response.data);
@@ -47,10 +53,12 @@ function EditProblems() {
             setproblemStatement(responseData[0].problemStatement);
         } catch (error) {
             console.log(error);
+        } finally {
+            setIsLoading(false);
         }
         
     }
-    console.log(output);
+    // console.log(output);
     useEffect(()=>{
         getPresentData();
     },[]);
@@ -70,6 +78,8 @@ function EditProblems() {
                     </div>
                     </div>
                 </section>
+
+                {isLoading && <Loader isLoading={isLoading} />}
 
                 <section className="editSection">
                 <div className="editContainer">

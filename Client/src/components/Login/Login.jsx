@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import { Link } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 export default function Login() {
 
@@ -13,11 +14,13 @@ export default function Login() {
   const [username,setUserName] = useState('');
   const [password,setPassword] = useState('');
   const [errorMessage,setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   
 
   async function submitLoginForm(e){
     e.preventDefault();
+    setIsLoading(true);
 
     let loginUserData = {
       username:username,
@@ -42,12 +45,15 @@ export default function Login() {
       console.log(error.response.data);
       setErrorMessage(error.response.data.message) ;
       console.log("ERROR : " + error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
   return (
     <>
     <Header page="login" user="User"/>
+    {isLoading && <Loader isLoading={isLoading} />}
     <div className="login-container">
       <form onSubmit={submitLoginForm}>
         <div className="login">

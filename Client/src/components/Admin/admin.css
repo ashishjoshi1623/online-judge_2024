@@ -148,6 +148,11 @@
     color: #d4d4d4;
 }
 
+.admin-submit-btn:hover{
+    background-color: rgb(49, 49, 49);
+    color: #f1f1f1;
+}
+
 .textcolor-pink{
     color: rgb(9, 201, 235);
     font-size : 20px ;

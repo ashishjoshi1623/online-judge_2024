@@ -61,8 +61,9 @@ body{
         box-shadow: 0 10px 16px 0 rgba(3, 167, 167, 0.201), 0 6px 10px 0 rgba(0,0,0,0.19);
 }
 .explore-btn:hover{
-    height: 4rem;
-    width: 10rem;
+    border: 2px solid #0179f26c;
+    border-radius: 15px;
+    background-color: #ebebeb8d;
 }
 
 .explore-heading{

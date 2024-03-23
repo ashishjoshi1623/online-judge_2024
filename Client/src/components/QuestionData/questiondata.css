@@ -23,6 +23,10 @@
     width : 80vw;
     margin-left : 10vw;
 }
+
+.quesListItem:hover{
+    background-color: rgb(236, 254, 255);
+}
 hr{
     width: 80vw;
     margin-left: 10vw;
