@@ -1,4 +1,8 @@
+markdown
+Copy code
 # TrashCodes - Online Judge Application 2024
+
+![TrashCodes Logo](https://example.com/trashcodes-logo.png)
 
 ## Description
 
@@ -21,24 +25,23 @@ To get started with TrashCodes - Online Judge Application 2024, follow these ste
 
 ```bash
 git clone https://github.com/ashishjoshi1623/online-judge_2024.git
-
-2. Install dependencies:
-
-```bash
+Install dependencies:
+bash
+Copy code
 npm install
+Configure environment variables:
 
-3.Configure environment variables:
-
--Create a .env file in the root directory.
--Add the following variables:
+Create a .env file in the root directory.
+Add the following variables:
+makefile
+Copy code
 PORT=3000
 DATABASE_URL=your_database_connection_string
+Start the server:
 
-4.Start the server:
-
-```bash
+bash
+Copy code
 npm start
-
 Access the application at http://localhost:3000.
 Contributing
 Contributions are welcome! If you'd like to contribute to TrashCodes - Online Judge Application 2024, please follow these steps:
@@ -74,8 +77,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 Acknowledgements
--Special thanks to bcrypt for password encryption.
--Inspired by the concept of online judges like Codeforces and LeetCode.
+Special thanks to bcrypt for password encryption.
+Inspired by the concept of online judges like Codeforces and LeetCode.
+vbnet
+Copy code
 
-```vbnet
 You can copy and paste this content directly into your README.md file on GitHub. Make sure to replace placeholder information such as the logo URL and database connection string with your actual project details. Additionally, remember to create a `LICENSE` file in your repository root directory and copy the license text into it.
