@@ -38,7 +38,7 @@ app.get("/",cors(), (req,res)=>{
     res.send("hello");
 });
 
-// Post method fetching "Register" credentials
+// Post method "Register User"
 app.post("/api/register",cors(), async (req,res) => {
     // user details from frontend
    const {username, email, password, confirmPassword} = req.body.values;
@@ -75,7 +75,7 @@ app.post("/api/register",cors(), async (req,res) => {
         )
 });
 
-// Post method fetching "Login" credentials
+// Post method "Login"
 app.post("/api/login",cors(), async (req,res)=>{
     const {username , password } = req.body.loginUserData;
     // console.log(username , password);
@@ -201,7 +201,7 @@ app.get("/api/description/:title",cors(),async (req,res)=>{
 
 })
 
-//compiler functioning route
+//compiler functioning route (submit)
 app.post("/api/submit", cors(), async(req,res) => {
     const { language = 'cpp' , code, title, user, userId, questionId} = req.body;
     let testCases = [];
