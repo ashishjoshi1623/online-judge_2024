@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { addQuestionSchema } from '../../validation/QuestionSchema.jsx';
 import axios from 'axios';
-import QuestionList from './questionList.jsx';
+import QuestionList from './QuestionList.jsx';
 import Loader from '../Loader/Loader.jsx';
 
 export default function Admin() {
