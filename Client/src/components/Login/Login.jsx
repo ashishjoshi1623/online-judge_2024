@@ -29,7 +29,7 @@ export default function Login() {
 
     try 
     {
-        const loginResponse = await axios.post("http://localhost:3000/api/login",{
+        const loginResponse = await axios.post(`${import.meta.env.VITE_API_PORT}/api/login`,{
         loginUserData
       });
       console.log(loginResponse);
