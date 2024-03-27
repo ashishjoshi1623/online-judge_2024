@@ -11,6 +11,9 @@ TrashCodes is an online judge application designed to provide programmers with a
 ## Website is Live
 https://trash-codes.vercel.app/
 
+-if you face any issues try to change site settings and allow insecure sites/content.
+
+
 
 ## Features
 
