@@ -8,6 +8,9 @@ TrashCodes is an online judge application designed to provide programmers with a
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/80px-Node.js_logo.svg.png" alt="Node.js Logo" width="100" height="50"/> <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Expressjs.png" alt="Express.js Logo" width="100" height="50"/> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/80px-React-icon.svg.png" alt="React Logo" width="100" height="50"/> <img src="https://webassets.mongodb.com/_com_assets/cms/mongodb_logo1-76twgcu2dm.png" alt="MongoDB Logo" width="100" height="50"/>
 
+## Website is Live
+https://trash-codes.vercel.app/
+
 
 ## Features
 
