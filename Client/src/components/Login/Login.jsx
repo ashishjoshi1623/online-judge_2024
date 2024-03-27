@@ -32,12 +32,12 @@ export default function Login() {
         const loginResponse = await axios.post(`${import.meta.env.VITE_API_PORT}/api/login`,{
         loginUserData
       });
-      console.log(loginResponse);
+      // console.log(loginResponse);
       if(loginResponse.data.statusCode === 201){
         navigate("/questions",{ state : loginResponse.data })
       }
      
-      console.log(loginResponse.data);
+      // console.log(loginResponse.data);
       setErrorMessage(loginResponse.data.message)
       
 
@@ -57,7 +57,7 @@ export default function Login() {
     <div className="login-container">
       <form onSubmit={submitLoginForm}>
         <div className="login">
-        <img src="../../public/appIcons/appIcon.jpeg" 
+        <img src="appIcons/appIcon.jpeg" 
         className="my-4 app-logoo"
           alt="app-logo" 
           height="70" 

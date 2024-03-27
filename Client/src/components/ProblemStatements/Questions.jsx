@@ -14,7 +14,7 @@ function Questions() {
   const location = useLocation();
   const username = location.state.data.username;
   const userId = location.state.data.userId;
-  console.log(username); //'65c9c2cd3f47ec7777e0cf04'
+  // console.log(userId); //'65c9c2cd3f47ec7777e0cf04'
 
   const [questionData,setQuestionData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

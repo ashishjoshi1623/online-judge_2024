@@ -68,7 +68,7 @@ app.post("/api/register",cors(), async (req,res) => {
         if(!isUserCreated){
             throw new ApiError(500,"Something went wrong");
         }
-        console.log(isUserCreated);
+        // console.log(isUserCreated);
 
         return res.status(201).json(
         new ApiResponse(201, isUserCreated, "User registered Successfully")
@@ -229,7 +229,6 @@ app.post("/api/submit", cors(), async(req,res) => {
         if(language === 'cpp'){
             for(var i = 0; i<testCases.length; i++){
                 output = await executeCpp(filePath,testCases[i]);
-
                 // If User's answer is correct
                 if(output === finalOutput[i]){
                     // console.log("success");
@@ -401,7 +400,7 @@ app.post("/api/contactquery", cors(), async(req,res) => {
     else{
         const submitToDatabase = await Contact.create({contactQuery, personalEmail});
         
-        console.log(submitToDatabase);
+        // console.log(submitToDatabase);
     }
     
 
@@ -429,7 +428,7 @@ app.put("/api/editquestions", cors(), async(req,res) => {
             throw new ApiError(500, "Something went wrong");
         }
 
-        console.log(findQuestion);
+        // console.log(findQuestion);
         res.status(200).json({ message: "successfully updated data" });
     } catch (error) {
         // Handle errors here
@@ -449,7 +448,7 @@ app.delete("/api/deletequestion", cors(), async(req,res) => {
             throw new ApiError(500, "Something went wrong");
         }
 
-        console.log(findQuestion);
+        // console.log(findQuestion);
         res.status(200).json({ message: "successfully deleted data" });
     } catch (error) {
         // Handle errors here

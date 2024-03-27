@@ -58,7 +58,7 @@ function EditProblems() {
         }
         
     }
-    // console.log(output);
+    console.log(output);
     useEffect(()=>{
         getPresentData();
     },[]);

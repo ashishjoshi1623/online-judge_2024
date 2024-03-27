@@ -28,7 +28,7 @@ const executeJava = async (filePath, testCase) => {
             (error, stdout, stderr) => {
                 if (error) {
                     let errOutput = 'syntax error';
-                    resolve(errOutput);
+                    resolve(error.message,errOutput);
                     reject({ error, stderr });
                 }
                 if (stderr) {

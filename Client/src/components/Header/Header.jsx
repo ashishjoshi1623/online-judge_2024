@@ -10,7 +10,7 @@ function Header(props) {
       <section className="nav-section">
         <div className="nav-container">
         <div className="nav-app-logo">
-          <img src="../../public/appIcons/appIcon.jpeg" alt="app logo" className='app-icon'/>
+          <img src="appIcons/appIcon.jpeg" alt="app logo" className='app-icon'/>
           <h1 className="appname1 ">Trash</h1>
           <h1 className="appname2 ">Codes</h1>
         </div>

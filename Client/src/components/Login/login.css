@@ -6,6 +6,11 @@
     justify-content: center;
 }
 
+.login-container img{
+    box-shadow: 0 5px 10px 0 rgba(19, 3, 167, 0.201), 0 6px 10px 0 rgba(0,0,0,0.19);
+    margin-bottom: 1rem;
+}
+
 .login-button{
     border: 1px solid #0cb9e9;
     border-radius: 10px;
@@ -24,8 +29,8 @@
 }
 
 .login{
-    background-color: #ffffffaf;
-    border: 3px solid rgba(0, 238, 250, 0.222);
+    background-color: #e3fbffaf;
+    border: 3px solid rgba(0, 237, 250, 0.155);
     border-radius: 10px;
     height: 70vh;
     width: 30vw;

@@ -24,7 +24,7 @@ const executeCpp = async (filePath, testCase) => {
                 if (error) {
                     // console.log("compiletime error: " + error);
                     let errOutput = 'syntax error';
-                    resolve(errOutput);
+                    resolve(error.message, errOutput);
                     reject({ error, stderr });
                 }
                 if (stderr) {

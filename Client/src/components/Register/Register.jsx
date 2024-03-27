@@ -64,7 +64,7 @@ export default function Register() {
       <section className="register-section">
         <form onSubmit={ handleSubmit } >
           <div className="register-container">
-          <img src="../../public/appIcons/appIcon.jpeg" 
+          <img src="appIcons/appIcon.jpeg" 
           alt="app-logo" 
           height="70" 
           width="80" 
