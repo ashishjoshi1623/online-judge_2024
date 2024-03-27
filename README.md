@@ -215,6 +215,7 @@ SOFTWARE.
 
 ## Acknowledgements
 
-- Special thanks to [bcrypt](https://www.npmjs.com/package/bcrypt) for password encryption.
+- Special thanks to AlgoUniversity Team for their guidance and support.
+- Thanks to [bcrypt](https://www.npmjs.com/package/bcrypt) for password encryption.
 - Inspired by the concept of online judges like Codeforces and LeetCode.
 
